@@ -13,6 +13,8 @@ namespace AutomationDesinger
     {
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            // get the intial units from the settings from 
+            SolidworksWrapper.General.UnitManager.UnitTypes = (SolidworksWrapper.General.UnitTypes)Settings.Default.SelectedUnits;
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

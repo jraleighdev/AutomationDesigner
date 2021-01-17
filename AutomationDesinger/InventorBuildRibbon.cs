@@ -473,7 +473,9 @@ namespace AutomationDesinger
 
         private void solidworksSettings_Click(object sender, RibbonControlEventArgs e)
         {
+            var solidWorksSettingForm = new SolidworksSettingsForm();
 
+            solidWorksSettingForm.Show();
         }
 
         #endregion
