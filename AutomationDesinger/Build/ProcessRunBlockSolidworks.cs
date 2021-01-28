@@ -42,7 +42,7 @@ namespace AutomationDesinger.Build
             _methods = new SolidworksMethods();
         }
 
-        public List<string> Run(bool startMethod, string rangeName = "", string rangeParameter = "")
+        public List<string> Run(bool startMethod, string rangeName = "", string subRangeName = "", string subRangeValue = "")
         {
             Excel.Range startCell = null;
 
@@ -53,6 +53,12 @@ namespace AutomationDesinger.Build
             else
             {
                 startCell = _worksheet.Range[rangeName];
+            }
+
+            if (!string.IsNullOrEmpty(subRangeName))
+            {
+                var subRangeCell = _worksheet.Range[subRangeName];
+                subRangeCell.Value = subRangeValue;
             }
 
             if (startCell == null) throw new Exception("Could not find start range");
@@ -77,50 +83,53 @@ namespace AutomationDesinger.Build
 
                 var workingDocumentName = GetString(i, parentCol);
 
-                if (string.IsNullOrEmpty(workingDocumentName))
+                if (command != Commands.Sub)
                 {
-                    if (_topDocument == null)
+                    if (string.IsNullOrEmpty(workingDocumentName))
                     {
-                        _topDocument = SolidworksApplication.ActiveDocument;
-                    }
-                    else
-                    {
-                        if (SolidworksApplication.ActiveDocument.Name != _topDocument.Name)
+                        if (_topDocument == null)
                         {
-                            SolidworksApplication.ActiveDocument.Close();
+                            _topDocument = SolidworksApplication.ActiveDocument;
                         }
-
-                        SolidworksApplication.ActivateDocument(_topDocument.Name);
-                    }
-
-                    _workingDocument = _topDocument;
-                }
-                else
-                {
-                    if (_workingDocument == null)
-                    {
-                        _workingDocument = SolidworksApplication.ActivateDocument(workingDocumentName);
-
-                        if (_workingDocument == null)
+                        else
                         {
-                            throw new Exception($"Could not find document {workingDocumentName}");
-                        }
-                    }
-                    else
-                    {
-                        if (_workingDocument.Name != workingDocumentName)
-                        {
-                            if (_workingDocument.Name != _topDocument.Name)
+                            if (SolidworksApplication.ActiveDocument.Name != _topDocument.Name)
                             {
-                                _workingDocument.Close();
-                            } 
-                       
-                            _workingDocument = SolidworksApplication.ActivateDocument(workingDocumentName);
+                                SolidworksApplication.ActiveDocument.Close();
+                            }
+
+                            SolidworksApplication.ActivateDocument(_topDocument.Name);
                         }
 
+                        _workingDocument = _topDocument;
+                    }
+                    else
+                    {
                         if (_workingDocument == null)
                         {
-                            throw new Exception($"Could not find document {workingDocumentName}");
+                            _workingDocument = SolidworksApplication.ActivateDocument(workingDocumentName);
+
+                            if (_workingDocument == null)
+                            {
+                                throw new Exception($"Could not find document {workingDocumentName}");
+                            }
+                        }
+                        else
+                        {
+                            if (_workingDocument.Name != workingDocumentName)
+                            {
+                                if (_workingDocument.Name != _topDocument.Name)
+                                {
+                                    _workingDocument.Close();
+                                }
+
+                                _workingDocument = SolidworksApplication.ActivateDocument(workingDocumentName);
+                            }
+
+                            if (_workingDocument == null)
+                            {
+                                throw new Exception($"Could not find document {workingDocumentName}");
+                            }
                         }
                     }
                 }
@@ -193,6 +202,9 @@ namespace AutomationDesinger.Build
                     case Commands.Sub:
                         ProcessRunBlockSolidworks runBlock = null;
                         var subName = GetString(i, nameCol);
+                        var parameterName = GetString(i, parentCol);
+                        var parameter = GetString(i, value);
+
                         var workSheetName = "";
 
                         if (subName.Contains("!"))
@@ -209,7 +221,7 @@ namespace AutomationDesinger.Build
                             runBlock = new ProcessRunBlockSolidworks(_worksheet, _topDocument);
                         }
 
-                        runBlock.Run(false, subName, GetString(i, value));
+                        runBlock.Run(false, subName, parameterName, parameter);
                         break;
                     case Commands.If:
                         ValidateIf(i, typeCol);
