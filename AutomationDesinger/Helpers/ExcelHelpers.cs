@@ -72,16 +72,34 @@ namespace AutomationDesinger.Helpers
             return workSheet.NamedRanges().Exists(x => x == name);
         }
 
-        public static List<string> NamedRanges(this Excel.Worksheet workSheet)
+        public static void DeleteNamedRange(this Excel.Worksheet worksheet, string name)
         {
-            var value = new List<string>();
+            if (worksheet.RangeExists(name))
+            {
+                var namedRange = worksheet.Names().FirstOrDefault(n => n.Name == name);
+
+                if (namedRange != null)
+                {
+                    namedRange.Delete();
+                }
+            }
+        }
+
+        public static List<Name> Names(this Excel.Worksheet workSheet)
+        {
+            var value = new List<Name>();
 
             foreach (Excel.Name n in workSheet.Application.ActiveWorkbook.Names)
             {
-                value.Add(n.Name);
+                value.Add(n);
             }
 
             return value;
+        }
+
+        public static List<string> NamedRanges(this Excel.Worksheet workSheet)
+        {
+            return workSheet.Names().Select(n => n.Name).ToList();
         }
 
         public static Excel.Range CreateNamedRange(this Excel.Worksheet worksheet, string name, string range)
@@ -90,9 +108,14 @@ namespace AutomationDesinger.Helpers
 
             if (worksheet.RangeExists(name))
             {
-                namedRange = worksheet.Range[name];
-
-                namedRange = worksheet.Range[range];
+                try
+                {
+                    namedRange = worksheet.Range[name];
+                }
+                catch (Exception ex)
+                {
+                    worksheet.DeleteNamedRange(name);
+                }
             }
             else
             {
@@ -108,7 +131,14 @@ namespace AutomationDesinger.Helpers
         {
             if (worksheet.RangeExists(name))
             {
-                worksheet.Range[name].Clear();
+                try
+                {
+                    worksheet.Range[name].Clear();
+                }
+                catch(Exception ex)
+                {
+                    worksheet.DeleteNamedRange(name);
+                }
             }
         }
 

@@ -111,6 +111,40 @@ namespace AutomationDesinger.Build.ApplicationFunctions
             return equation == null ? "" : equation.Value.ToString();
         }
 
+        public void SetVisiblity(SolidworksDocument document, string name, bool visibilty, string featureType)
+        {
+            document.ClearSelection();
+
+            try
+            {
+                switch (featureType)
+                {
+                    case FeatureTypes.Component:
+                        document.Select(name, FeatureTypes.Component);
+                        break;
+                    
+                }
+
+                if (document.SelectedCount() != 1)
+                {
+                    throw new Exception($"Could not find {name} in {document.Name}");
+                }
+
+                if (visibilty)
+                {
+                    document.ShowSelected();
+                }
+                else
+                {
+                    document.HideSelected();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logs.Add(ex.Message);
+            }
+        }
+
         public void Suppression(SolidworksDocument document, string name, string value, SuppresionType suppresionType)
         {
             var status = value.ToUpper() == "S";
@@ -140,7 +174,7 @@ namespace AutomationDesinger.Build.ApplicationFunctions
 
                 if (document.SelectedCount() != 1)
                 {
-                    throw new Exception($"Could not {name} in {document.Name}");
+                    throw new Exception($"Could not find {name} in {document.Name}");
                 }
 
                 if (status)
@@ -188,6 +222,35 @@ namespace AutomationDesinger.Build.ApplicationFunctions
             catch (Exception ex)
             {
                 Logs.Add(ex.Message);
+            }
+        }
+
+        public  void SetDocumentReferenceVisibility(SolidworksDocument workingDocument, string name, bool visible, string featureType)
+        {
+            if (workingDocument.IsAssemblyDoc)
+            {
+                workingDocument.ClearSelection();
+
+                var children = workingDocument.Children().Where(c => c.SolidworksDocument.Name == name);
+
+                foreach (var c in children)
+                {
+                    workingDocument.Select(c.Name, FeatureTypes.Component);
+
+                    if (workingDocument.SelectedCount() == 1)
+                    {
+                        if (visible)
+                        {
+                            workingDocument.ShowSelected();
+                        }
+                        else
+                        {
+                            workingDocument.HideSelected();
+                        }
+                    }
+
+                    workingDocument.ClearSelection();
+                }
             }
         }
 

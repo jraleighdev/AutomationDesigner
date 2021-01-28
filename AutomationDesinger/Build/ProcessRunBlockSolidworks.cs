@@ -14,6 +14,7 @@ using AutomationDesinger.Constants;
 using AutomationDesinger.Enums;
 using AutomationDesinger.Helpers;
 using System.Collections.Specialized;
+using SolidworksWrapper.Constants;
 
 namespace AutomationDesinger.Build
 {
@@ -171,6 +172,12 @@ namespace AutomationDesinger.Build
                         break;
                     case Commands.SetWeldmentConfiguration:
                         _methods.SetWeldmentMemberConfiguration(_workingDocument, GetString(i, nameCol), GetString(i, value));
+                        break;
+                    case Commands.ComponentVisiblity:
+                        _methods.SetVisiblity(_workingDocument, GetString(i, nameCol), GetBoolean(i, value), FeatureTypes.Component);
+                        break;
+                    case Commands.DocumentReferenceVisiblity:
+                        _methods.SetDocumentReferenceVisibility(_workingDocument, GetString(i, nameCol), GetBoolean(i, value), FeatureTypes.Component);
                         break;
                     case Commands.DeleteComponent:
                         // _methods.Delete(_workingDocument, GetString(i, nameCol));

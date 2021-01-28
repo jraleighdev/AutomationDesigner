@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
-using AutomationDesinger.Models;
-using SolidworksWrapper;
 using SolidworksWrapper.General;
-using Syncfusion.Data.Extensions;
 using Syncfusion.WinForms.Controls;
 using Syncfusion.WinForms.ListView;
 
@@ -40,7 +34,7 @@ namespace AutomationDesinger.Forms
             this.Style.TitleBar.MinimizeButtonForeColor = Color.DarkGray;
             this.Style.TitleBar.HelpButtonForeColor = Color.DarkGray;
             this.Style.TitleBar.IconHorizontalAlignment = HorizontalAlignment.Left;
-            this.Style.TitleBar.Font = this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Style.TitleBar.Font = this.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.Style.TitleBar.TextHorizontalAlignment = HorizontalAlignment.Center;
             this.Style.TitleBar.TextVerticalAlignment = System.Windows.Forms.VisualStyles.VerticalAlignment.Center;
         }
