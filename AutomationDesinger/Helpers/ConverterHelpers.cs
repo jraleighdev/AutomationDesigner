@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomationDesinger.Helpers
 {
-    public static class ConvererHelpers
+    public static class ConverterHelpers
     {
         public static double ConvertDouble(string value)
         {

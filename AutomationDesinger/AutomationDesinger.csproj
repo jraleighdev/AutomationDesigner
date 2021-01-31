@@ -261,7 +261,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helpers\CollectionHelpers.cs" />
-    <Compile Include="Helpers\ConvererHelpers.cs" />
+    <Compile Include="Helpers\ConverterHelpers.cs" />
     <Compile Include="Helpers\ExcelHelpers.cs" />
     <Compile Include="Helpers\FractionConverter.cs" />
     <Compile Include="Helpers\SolidworksFormatters.cs" />

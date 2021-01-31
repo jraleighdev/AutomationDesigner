@@ -83,7 +83,7 @@ namespace AutomationDesinger.Forms.SubForms
 
             foreach (var p in param)
             {
-                this.Parameters.Add(new ParameterCaptureDto(p.Name, p.IsUser, p.Units.ToUpper() == "IN" ? UnitManager.UnitsFromInventor(p.Value) : p.Value));
+                this.Parameters.Add(new ParameterCaptureDto(p.Name, p.IsUser, p.ConvertedValue));
             }
 
             foreach (var f in features)

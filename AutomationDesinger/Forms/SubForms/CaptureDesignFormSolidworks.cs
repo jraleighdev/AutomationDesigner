@@ -78,7 +78,7 @@ namespace AutomationDesinger.Forms.SubForms
 
             foreach (var d in dims.Dimensions)
             {
-                this.Dimensions.Add(new DimensionCapture(SolidworksFormatters.RemoveDocumentNameFromDimension(d.Name), ConvererHelpers.Round(d.Value, 16)));
+                this.Dimensions.Add(new DimensionCapture(SolidworksFormatters.RemoveDocumentNameFromDimension(d.Name), ConverterHelpers.Round(d.Value, 16)));
             }
 
             foreach (var f in dims.Features)

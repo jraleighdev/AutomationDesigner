@@ -95,11 +95,11 @@ namespace AutomationDesinger.Forms.DrawingCapture
 
                             viewNameLabel.Text = _selectedView.Name;
 
-                            viewScaleLabel.Text = "Scale: " + ConvererHelpers.Round(UnitManager.UnitsFromInventor(_selectedView.Scale), 200).ToString();
+                            viewScaleLabel.Text = "Scale: " + ConverterHelpers.Round(UnitManager.UnitsFromInventor(_selectedView.Scale), 200).ToString();
 
-                            viewXLabel.Text = "X: " + ConvererHelpers.Round(UnitManager.UnitsFromInventor(_selectedView.X), 16).ToString();
+                            viewXLabel.Text = "X: " + ConverterHelpers.Round(UnitManager.UnitsFromInventor(_selectedView.X), 16).ToString();
 
-                            viewYLabel.Text = "Y: " + ConvererHelpers.Round(UnitManager.UnitsFromInventor(_selectedView.Y), 16).ToString();
+                            viewYLabel.Text = "Y: " + ConverterHelpers.Round(UnitManager.UnitsFromInventor(_selectedView.Y), 16).ToString();
                         }
                     }
                 }

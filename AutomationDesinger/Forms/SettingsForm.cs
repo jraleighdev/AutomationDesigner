@@ -4,14 +4,28 @@ using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Windows.Forms;
 using AutomationDesinger.Models;
+using InventorWrapper.General;
 using Syncfusion.Data.Extensions;
 using Syncfusion.WinForms.Controls;
+using Syncfusion.WinForms.ListView;
 
 namespace AutomationDesinger.Forms
 {
     public partial class SettingsForm : SfForm
     {
+        #region Fields
+
+        private LengthUnits _lengthUnits;
+
+        private AngularUnits _angularUnits;
+
+        #endregion
+
+        #region Properties
+
         public ObservableCollection<FilePathContains> FilePathContains { get; set; }
+
+        #endregion
 
         public SettingsForm()
         {
@@ -19,12 +33,35 @@ namespace AutomationDesinger.Forms
 
             Styling();
 
-            Setup();
+            SetupFileSettings();
+
+            SetUpUnitSelector();
+
+            SetUpAngularUnitSelector();
 
             SetupContextMenu();
         }
 
-        private void Setup()
+        #region Setup Methods
+
+        private void SetUpUnitSelector()
+        {
+            inventorUnitsSelector.DataSource = UnitManager.MeasurementUnits;
+
+            inventorUnitsSelector.SelectedIndex = (int)UnitManager.LengthUnits;
+        }
+
+        private void SetUpAngularUnitSelector()
+        {
+            inventorAngularUnitSelector.DataSource = UnitManager.AngularMeasurementUnits;
+
+            inventorAngularUnitSelector.SelectedIndex = (int)UnitManager.AngularUnits;
+        }
+
+        /// <summary>
+        /// Set up the file filter page
+        /// </summary>
+        private void SetupFileSettings()
         {
             FilePathContains = new ObservableCollection<FilePathContains>();
 
@@ -36,12 +73,11 @@ namespace AutomationDesinger.Forms
             this.FilePathsToAvoidGrid.DataSource = FilePathContains;
 
             this.FilePathsToAvoidGrid.AddNewRowPosition = Syncfusion.WinForms.DataGrid.Enums.RowPosition.Top;
-
-
         }
 
-
-
+        /// <summary>
+        /// Sets up the form styling
+        /// </summary>
         private void Styling()
         {
             this.Style.TitleBar.Height = 26;
@@ -59,6 +95,9 @@ namespace AutomationDesinger.Forms
             this.Style.TitleBar.TextVerticalAlignment = System.Windows.Forms.VisualStyles.VerticalAlignment.Center;
         }
 
+        /// <summary>
+        /// Sets up the context menu
+        /// </summary>
         private void SetupContextMenu()
         {
             FilePathsToAvoidGrid.RecordContextMenu = new ContextMenuStrip();
@@ -68,10 +107,23 @@ namespace AutomationDesinger.Forms
             FilePathsToAvoidGrid.RecordContextMenu.Items.Add("Delete", null, OnDeleteClicked);
         }
 
+        #endregion
+
+        #region Events
+
+        private EventHandler OnDeleteClicked;
+
+        #endregion
+
+        #region methods
+
         private void settingsOkbutton_Click(object sender, System.EventArgs e)
         {
             Settings.Default.PathsToAvoid.Clear();
-
+            Settings.Default.SelectedUnits = (int)_lengthUnits;
+            Settings.Default.AngularUnits = (int)_angularUnits;
+            UnitManager.LengthUnits = _lengthUnits;
+            UnitManager.AngularUnits = _angularUnits;
             foreach (var c in FilePathContains)
             {
                 Settings.Default.PathsToAvoid.Add(c.Name);
@@ -81,8 +133,6 @@ namespace AutomationDesinger.Forms
 
             this.Close();
         }
-
-        private EventHandler OnDeleteClicked;
 
         private void settingsCancelButton_Click(object sender, System.EventArgs e)
         {
@@ -101,5 +151,29 @@ namespace AutomationDesinger.Forms
                 e.Column.HeaderText = "Enter a file path or part of path. \nIf the document contains this value it will not be copied.";
             }
         }
+
+        private void inventorUnitsSelector_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var comboBox = sender as SfComboBox;
+
+            if (comboBox != null)
+            {
+                _lengthUnits = (LengthUnits)comboBox.SelectedIndex;
+            }
+        }
+
+        private void inventorAngularUnitSelector_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var comboBox = sender as SfComboBox;
+
+            if (comboBox != null)
+            {
+                _angularUnits = (AngularUnits)comboBox.SelectedIndex;
+            }
+        }
+
+        #endregion
+
+
     }
 }

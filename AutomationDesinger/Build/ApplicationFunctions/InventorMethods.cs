@@ -39,21 +39,18 @@ namespace AutomationDesinger.Build.ApplicationFunctions
                 return;
             }
 
-            if (parameter.Units.ToUpper() == "IN")
+            switch (parameter.UnitType)
             {
-                var convertedValue = ConvererHelpers.ConvertDouble(value);
-
-                parameter.Value = UnitManager.UnitsToInventor(convertedValue);
-            }
-            else if (parameter.Units.ToUpper() == "UL")
-            {
-                var convertedValue = ConvererHelpers.ConvertInt(value);
-
-                parameter.Value = convertedValue;
-            }
-            else if (parameter.Units.ToUpper() == "TEXT")
-            {
-                parameter.Value = value;
+                case UnitTypes.Length:
+                case UnitTypes.Angular:
+                    parameter.Value = UnitManager.UnitsToInventor(ConverterHelpers.ConvertInt(value), parameter.UnitType);
+                    break;
+                case UnitTypes.Unitless:
+                    parameter.Value = ConverterHelpers.ConvertInt(value);
+                    break;
+                case UnitTypes.Text:
+                    parameter.Value = value;
+                    break;
             }
         }
 
