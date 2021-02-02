@@ -1,4 +1,4 @@
-# AutomationDesinger
+# AutomationDesigner
 
 Excel Addin for creating an open source low code solution for cad automation.
 
