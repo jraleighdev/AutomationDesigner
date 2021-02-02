@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationDesinger", "AutomationDesinger\AutomationDesinger.csproj", "{78D0570C-581B-430A-ADF5-E9D810532210}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationDesigner", "AutomationDesinger\AutomationDesigner.csproj", "{78D0570C-581B-430A-ADF5-E9D810532210}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorWrapper", "..\InventorWrapper\InventorWrapper.csproj", "{31D2045E-03A5-4638-99CD-9535790A70D2}"
 EndProject
