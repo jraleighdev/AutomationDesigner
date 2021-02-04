@@ -102,7 +102,9 @@ namespace AutomationDesinger.Build
 
                         if (_workingDocument == null)
                         {
-                            throw new Exception($"Could not find document {workingDocumentName}");
+                            Logs.Add($"Could not find document {workingDocumentName}. If all occurences are suppressed you can ignore this error.");
+                            i++;
+                            continue;
                         }
                     }
                     else
@@ -114,7 +116,9 @@ namespace AutomationDesinger.Build
 
                         if (_workingDocument == null)
                         {
-                            throw new Exception($"Could not find document {workingDocumentName}");
+                            Logs.Add($"Could not find document {workingDocumentName}. If all occurences are suppressed you can ignore this error.");
+                            i++;
+                            continue;
                         }
                     }
                 }
@@ -186,6 +190,8 @@ namespace AutomationDesinger.Build
                         }
 
                         runBlock.Run(subName, GetString(i, value));
+
+                        Logs.AddRange(runBlock.Logs);
                         break;
                     case Commands.If:
                         ValidateIf(i, typeCol);
@@ -247,7 +253,9 @@ namespace AutomationDesinger.Build
 
             InventorApplication.ActiveDocument.Save();
 
-            return _methods.Logs;
+            Logs.AddRange(_methods.Logs);
+
+            return Logs;
         }
     }
 }

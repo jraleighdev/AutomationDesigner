@@ -43,7 +43,7 @@ namespace AutomationDesinger.Build.ApplicationFunctions
             {
                 case UnitTypes.Length:
                 case UnitTypes.Angular:
-                    parameter.Value = UnitManager.UnitsToInventor(ConverterHelpers.ConvertInt(value), parameter.UnitType);
+                    parameter.Value = UnitManager.UnitsToInventor(ConverterHelpers.ConvertDouble(value), parameter.UnitType);
                     break;
                 case UnitTypes.Unitless:
                     parameter.Value = ConverterHelpers.ConvertInt(value);

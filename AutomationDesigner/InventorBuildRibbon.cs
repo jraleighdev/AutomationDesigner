@@ -650,6 +650,7 @@ namespace AutomationDesinger
             foreach (var l in logs)
             {
                 workSheet.Range[$"A{i}"].Value = l;
+                i++;
             }
         }
 
