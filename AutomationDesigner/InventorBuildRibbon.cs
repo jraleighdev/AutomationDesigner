@@ -595,7 +595,8 @@ namespace AutomationDesinger
             {
                 new CommandItem(Commands.Dimension, "Name of the dimesion followed by the sketch or feature name example \"Dim1@Sketch1\"", ConstantStrings.ParentText, "Value to set the dimension", applicationType: ApplicationTypeEnum.Solidworks),
                 new CommandItem(Commands.Equation, "Name of the equation", ConstantStrings.ParentText, "Value to set the equation", notes: "Units Ul, In, MM, CM, M, or test", applicationType: ApplicationTypeEnum.Solidworks),
-                new CommandItem(Commands.Parameter, "Name of Parameter", "Value to set parameter", "Document that contains the parameter", "Not Used", "Either UL(Unitless), In, MM, CM, M or text", "", ApplicationTypeEnum.Inventor),
+                new CommandItem(Commands.Parameter, "Name of Parameter", ConstantStrings.ParentText, "Value to set parameter", "Not Used", "Either UL(Unitless), In, MM, CM, M or text", "", ApplicationTypeEnum.Inventor),
+                new CommandItem(Commands.GetParameter, "Name of Parameter", ConstantStrings.ParentText, "Application will set the value of the parameter here", "Not Used", "Either UL(Unitless), In, MM, CM, M or text", "", ApplicationTypeEnum.Inventor),
                 new CommandItem(Commands.ComponentActivity, "Name of component in the tree followed by occurence number", ConstantStrings.ParentText, ConstantStrings.SuppressionText),
                 new CommandItem(Commands.ConstraintActivity, "Name of constraint", ConstantStrings.ParentText, ConstantStrings.SuppressionText),
                 new CommandItem(Commands.PatternActivity, "Name of pattern", ConstantStrings.ParentText, ConstantStrings.SuppressionText),

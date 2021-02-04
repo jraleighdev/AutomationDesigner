@@ -21,18 +21,36 @@ namespace AutomationDesinger.Build
 {
     public class ProcessRunBlockInventor : ExcelBaseParse
     {
+        /// <summary>
+        /// Top level document for application is running against
+        /// </summary>
         private InventorDocument _topDocument;
 
+        /// <summary>
+        /// The current document we are working on
+        /// </summary>
         private InventorDocument _workingDocument;
 
+        /// <summary>
+        /// Methods for manipulating inventor
+        /// </summary>
         private InventorMethods _methods;
 
+        /// <summary>
+        /// If the appliction is currently in a repeat block
+        /// </summary>
         private bool inRepeat = false;
+
         private int repeatStart = 0;
         private int repeatEnd = 0;
         private int repeatCount = 0;
         private int repeatIndex = 0;
 
+        /// <summary>
+        /// Attaches to inventor and setups up the methods
+        /// </summary>
+        /// <param name="worksheet"></param>
+        /// <param name="topDocument"></param>
         public ProcessRunBlockInventor(Excel.Worksheet worksheet, InventorDocument topDocument = null) : base(worksheet)
         {
             if (!InventorApplication.Attached)
@@ -44,10 +62,18 @@ namespace AutomationDesinger.Build
             _topDocument = topDocument;
         }
 
+        /// <summary>
+        /// Run application against the commands in the excel file
+        /// </summary>
+        /// <param name="rangeName"></param>
+        /// <param name="rangeParameter"></param>
+        /// <returns></returns>
         public List<string> Run(string rangeName = "", string rangeParameter = "")
         {
+            // The start cell
             Excel.Range startCell = null;
 
+            // if the range name is null get the name of the current sheet plus type
             if (string.IsNullOrEmpty(rangeName))
             {
                 startCell = _worksheet.Range[_worksheet.Name + "Type"];
@@ -59,23 +85,37 @@ namespace AutomationDesinger.Build
 
             if (startCell == null) throw new Exception("Could not find start range");
 
-
+            // Column for the type of commands we are running
             var typeCol = startCell.Column;
+
+            // Name of the document or sub we are working with
             var nameCol = typeCol + 1;
+
+            // Parent of the document we are working 
             var parentCol = nameCol + 1;
+
+            // Value to set or get based on command
             var value = parentCol + 1;
+
+            // Secondary value for some commands
             var value2 = value + 1;
+
+            // Set the start orw
             var i = startCell.Row + 1;
 
+            // loop while the command column is not null
             while (!string.IsNullOrEmpty(GetString(i, typeCol)))
             {
+                // get the command we are working with
                 var command = GetString(i, typeCol).ToUpper();
 
+                // if the command is a comment continue
                 if (command == Commands.Comment)
                 {
                     i++;
                     continue;
                 }
+                // Open the document 
                 else if (command == Commands.OpenDocument)
                 {
                     _methods.OpenDocument(GetString(i, nameCol), GetString(i, parentCol), GetString(i, value), GetString(i, value2));
@@ -83,8 +123,10 @@ namespace AutomationDesinger.Build
                     continue;
                 }
 
+                // Assign the working document
                 var workingDocumentName = GetString(i, parentCol);
 
+                // working document name is null then assign the working document to the document
                 if (string.IsNullOrEmpty(workingDocumentName))
                 {
                     if (_topDocument == null)
@@ -94,8 +136,10 @@ namespace AutomationDesinger.Build
 
                     _workingDocument = _topDocument;
                 }
+                // Assign the working document
                 else
                 {
+                    // if the working document is null then assign
                     if (_workingDocument == null)
                     {
                         _workingDocument = DocumentHelper.GetDocument(workingDocumentName);
@@ -107,6 +151,7 @@ namespace AutomationDesinger.Build
                             continue;
                         }
                     }
+                    // if the working document does not match working document name then assign it.
                     else
                     {
                         if (_workingDocument.Name != workingDocumentName)
@@ -139,6 +184,10 @@ namespace AutomationDesinger.Build
                         break;
                     case Commands.Parameter:
                         _methods.SetParameter(_workingDocument, GetString(i, nameCol), GetString(i, value));
+                        break;
+                    case Commands.GetParameter:
+                        var parameterValue = _methods.GetParameter(_workingDocument, GetString(i, nameCol));
+                        SetValue(i, value, parameterValue);
                         break;
                     case Commands.SetProperty:
                         _methods.SetProperty(_workingDocument, GetString(i, nameCol), GetString(i, value));

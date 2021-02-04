@@ -10,6 +10,8 @@ namespace AutomationDesinger.Constants
     {
         public const string Parameter = "PARAMETER";
 
+        public const string GetParameter = "GET PARAMETER";
+
         public const string Equation = "EQUATION";
 
         public const string GetEquationValue = "GET EQUATION";

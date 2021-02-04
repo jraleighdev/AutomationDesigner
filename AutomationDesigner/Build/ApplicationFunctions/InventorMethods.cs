@@ -54,6 +54,30 @@ namespace AutomationDesinger.Build.ApplicationFunctions
             }
         }
 
+        public string GetParameter(InventorDocument workingDocument, string paramName)
+        {
+            var parameter = workingDocument.Parameters.FirstOrDefault(x => x.Name == paramName);
+
+            if (parameter == null)
+            {
+                Logs.Add($"Could not find parameter {paramName} in {workingDocument.Name}");
+                return "Not Found";
+            }
+
+            switch (parameter.UnitType)
+            {
+                case UnitTypes.Length:
+                case UnitTypes.Angular:
+                    return UnitManager.UnitsFromInventor(parameter.Value, parameter.UnitType).ToString();
+                case UnitTypes.Unitless:
+                    return parameter.Value.ToString();
+                case UnitTypes.Text:
+                    return parameter.Value.ToString();
+                default:
+                    return "";
+            }
+        }
+
         public void SetProperty(InventorDocument document, string propertyName, string value)
         {
             var properties = GetIpropertyEnums();
