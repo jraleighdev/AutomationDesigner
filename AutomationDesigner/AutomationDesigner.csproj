@@ -30,7 +30,7 @@
     <DefineConstants>VSTO40</DefineConstants>
     <IsWebBootstrapper>False</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\ralei\OneDrive\Deployment\</PublishUrl>
+    <PublishUrl>publish\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
     <ApplicationVersion>1.0.0.5</ApplicationVersion>
@@ -147,8 +147,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\programs\syncfusion\Windows\18.1.0.42\Assemblies\4.6\Syncfusion.Shared.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Shared.Windows, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
-    <Reference Include="Syncfusion.SpellChecker.Base, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Tools.Base, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Tools.Windows, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -307,7 +305,7 @@
       <DependentUpon>InventorBuildRibbon.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="AutomationDesinger_TemporaryKey.pfx" />
+    <None Include="AutomationDesigner_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -382,10 +380,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>AutomationDesinger_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>AutomationDesigner_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>E40F52FF7729FEF42C30D13B4965B91DB6C58F39</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>F919492D03525E0FFAC84D2F91C44393E6E1EF0F</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
