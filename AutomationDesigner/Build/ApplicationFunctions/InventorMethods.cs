@@ -46,7 +46,7 @@ namespace AutomationDesinger.Build.ApplicationFunctions
                     parameter.Value = UnitManager.UnitsToInventor(ConverterHelpers.ConvertDouble(value), parameter.UnitType);
                     break;
                 case UnitTypes.Unitless:
-                    parameter.Value = ConverterHelpers.ConvertInt(value);
+                    parameter.Value = ConverterHelpers.ConvertDouble(value);
                     break;
                 case UnitTypes.Text:
                     parameter.Value = value;
