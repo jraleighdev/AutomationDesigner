@@ -1,5 +1,5 @@
-﻿using AutomationDesinger.Constants;
-using AutomationDesinger.Enums;
+﻿using AutomationDesigner.Constants;
+using AutomationDesigner.Enums;
 using InventorWrapper;
 using Microsoft.Office.Interop.Excel;
 using System;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace AutomationDesinger.Build
+namespace AutomationDesigner.Build
 {
     
 

@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using AutomationDesinger.Helpers;
+using AutomationDesigner.Helpers;
 using InventorWrapper;
 using InventorWrapper.CaptureDto.DrawingCapture;
 using InventorWrapper.CaptureDto.DrawingCapture.Enums;
@@ -19,7 +19,7 @@ using Syncfusion.Windows.Forms.Tools;
 using Syncfusion.WinForms.Controls;
 using Syncfusion.WinForms.DataGrid;
 
-namespace AutomationDesinger.Forms.DrawingCapture
+namespace AutomationDesigner.Forms.DrawingCapture
 {
     public partial class DrawingCaptureForm : SfForm
     {

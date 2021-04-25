@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace AutomationDesinger.Forms.Base
+namespace AutomationDesigner.ViewModels.Base
 {
     public class RelayCommand : ICommand
     {

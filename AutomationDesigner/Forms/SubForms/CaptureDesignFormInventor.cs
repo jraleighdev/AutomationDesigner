@@ -1,5 +1,5 @@
-﻿using AutomationDesinger.Constants;
-using AutomationDesinger.Helpers;
+﻿using AutomationDesigner.Constants;
+using AutomationDesigner.Helpers;
 using InventorWrapper;
 using InventorWrapper.CaptureDto;
 using InventorWrapper.CaptureDto.Enums;
@@ -12,7 +12,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
 
-namespace AutomationDesinger.Forms.SubForms
+namespace AutomationDesigner.Forms.SubForms
 {
     public class CaptureDesignFormInventor : CaptureDesignForm
     {

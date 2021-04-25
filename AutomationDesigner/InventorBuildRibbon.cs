@@ -2,30 +2,31 @@
 using Microsoft.Office.Tools.Ribbon;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Threading.Tasks;
-using AutomationDesinger.Helpers;
-using AutomationDesinger.Constants;
+using AutomationDesigner.Helpers;
+using AutomationDesigner.Constants;
 using System.Linq;
 using System.Collections.Generic;
-using AutomationDesinger.DTOS;
+using AutomationDesigner.DTOS;
 using Microsoft.Office.Interop.Excel;
 using System;
-using AutomationDesinger.Build;
+using AutomationDesigner.Build;
 using Microsoft.Office.Core;
 using System.Windows.Forms;
-using AutomationDesinger.Forms;
-using AutomationDesinger.CopyTools;
+using AutomationDesigner.Forms;
+using AutomationDesigner.CopyTools;
 using InventorWrapper.CopyTools;
-using AutomationDesinger.Enums;
+using AutomationDesigner.Enums;
 using System.ComponentModel.Design;
-using AutomationDesinger.Forms.SubForms;
+using AutomationDesigner.Forms.SubForms;
 using Syncfusion.Data.Extensions;
 using System.IO;
 using SolidworksWrapper;
 using SolidworksWrapper.Enums;
 using SolidworksWrapper.CopyTools;
-using AutomationDesinger.Forms.DrawingCapture;
+using AutomationDesigner.Forms.DrawingCapture;
+using AutomationDesigner.Forms.Capture;
 
-namespace AutomationDesinger
+namespace AutomationDesigner
 {
     public partial class InventorBuildRibbon
     {
@@ -694,6 +695,13 @@ namespace AutomationDesinger
             var captureForm = new DrawingCaptureForm();
 
             captureForm.ShowDialog();
+        }
+
+        private void button1_Click(object sender, RibbonControlEventArgs e)
+        {
+            var testForm = new InventorCaptureForm();
+
+            testForm.Show();
         }
     }
 }

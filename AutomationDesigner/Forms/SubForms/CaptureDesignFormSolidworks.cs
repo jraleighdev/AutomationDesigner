@@ -1,5 +1,5 @@
-﻿using AutomationDesinger.Constants;
-using AutomationDesinger.Helpers;
+﻿using AutomationDesigner.Constants;
+using AutomationDesigner.Helpers;
 using SolidworksWrapper;
 using SolidworksWrapper.CaptureDtos;
 using SolidworksWrapper.Constants;
@@ -9,7 +9,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
 
-namespace AutomationDesinger.Forms.SubForms
+namespace AutomationDesigner.Forms.SubForms
 {
     public class CaptureDesignFormSolidworks : CaptureDesignForm
     {

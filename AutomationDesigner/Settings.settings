@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AutomationDesinger" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AutomationDesigner" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="PathsToAvoid" Type="System.Collections.Specialized.StringCollection" Scope="User">

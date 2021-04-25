@@ -5,12 +5,12 @@ using Syncfusion.WinForms.Controls;
 using Syncfusion.WinForms.DataGrid.Events;
 using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Interop.Excel;
-using AutomationDesinger.Helpers;
+using AutomationDesigner.Helpers;
 using Syncfusion.Windows.Forms;
 using Syncfusion.WinForms.DataGrid;
 using System.Globalization;
 
-namespace AutomationDesinger.Forms
+namespace AutomationDesigner.Forms
 {
     /// <summary>
     /// Base class for data capture for cad systems

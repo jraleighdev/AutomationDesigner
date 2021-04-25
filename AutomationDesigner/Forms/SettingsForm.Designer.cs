@@ -1,4 +1,4 @@
-﻿namespace AutomationDesinger.Forms
+﻿namespace AutomationDesigner.Forms
 {
     partial class SettingsForm
     {

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Windows.Forms;
-using AutomationDesinger.Models;
+using AutomationDesigner.Models;
 using InventorWrapper.General;
 using Syncfusion.Data.Extensions;
 using Syncfusion.WinForms.Controls;
 using Syncfusion.WinForms.ListView;
 
-namespace AutomationDesinger.Forms
+namespace AutomationDesigner.Forms
 {
     public partial class SettingsForm : SfForm
     {

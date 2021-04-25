@@ -7,17 +7,17 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
 using InventorWrapper.Documents;
-using AutomationDesinger.Constants;
+using AutomationDesigner.Constants;
 using InventorWrapper;
-using AutomationDesinger.Build.ApplicationFunctions;
+using AutomationDesigner.Build.ApplicationFunctions;
 using System.Windows.Forms;
 using System.Collections.Specialized;
-using AutomationDesinger.Enums;
-using AutomationDesinger.Helpers;
+using AutomationDesigner.Enums;
+using AutomationDesigner.Helpers;
 using Microsoft.VisualStudio.Tools.Applications.Runtime;
 using InventorWrapper.Representation;
 
-namespace AutomationDesinger.Build
+namespace AutomationDesigner.Build
 {
     public class ProcessRunBlockInventor : ExcelBaseParse
     {

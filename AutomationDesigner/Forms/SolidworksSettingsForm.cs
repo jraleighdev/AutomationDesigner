@@ -5,7 +5,7 @@ using SolidworksWrapper.General;
 using Syncfusion.WinForms.Controls;
 using Syncfusion.WinForms.ListView;
 
-namespace AutomationDesinger.Forms
+namespace AutomationDesigner.Forms
 {
     public partial class SolidworksSettingsForm : SfForm
     {

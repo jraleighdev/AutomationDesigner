@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
-using AutomationDesinger.Build.ApplicationFunctions;
+using AutomationDesigner.Build.ApplicationFunctions;
 using Microsoft.Office.Interop.Excel;
 using SolidworksWrapper;
 using SolidworksWrapper.Documents;
-using AutomationDesinger.Constants;
-using AutomationDesinger.Enums;
-using AutomationDesinger.Helpers;
+using AutomationDesigner.Constants;
+using AutomationDesigner.Enums;
+using AutomationDesigner.Helpers;
 using System.Collections.Specialized;
 using SolidworksWrapper.Constants;
 
-namespace AutomationDesinger.Build
+namespace AutomationDesigner.Build
 {
     public class ProcessRunBlockSolidworks : ExcelBaseParse
     {

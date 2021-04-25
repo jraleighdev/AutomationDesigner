@@ -1,4 +1,4 @@
-﻿namespace AutomationDesinger.Forms.DrawingCapture
+﻿namespace AutomationDesigner.Forms.DrawingCapture
 {
     partial class DrawingCaptureForm
     {

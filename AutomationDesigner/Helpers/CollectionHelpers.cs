@@ -1,12 +1,13 @@
 ﻿using Syncfusion.Windows.Forms.Tools.Win32API;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationDesinger.Helpers
+namespace AutomationDesigner.Helpers
 {
     public static class CollectionHelpers
     {
@@ -23,6 +24,14 @@ namespace AutomationDesinger.Helpers
             }
 
             return tempList;
+        }
+
+        public static void AddRange<T>(this ObservableCollection<T> observable, IEnumerable<T> collection)
+        {
+            foreach(var item in collection)
+            {
+                observable.Add(item);
+            }
         }
     }
 }

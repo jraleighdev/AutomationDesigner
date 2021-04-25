@@ -1,5 +1,5 @@
-﻿using AutomationDesinger.Enums;
-using AutomationDesinger.Helpers;
+﻿using AutomationDesigner.Enums;
+using AutomationDesigner.Helpers;
 using InventorWrapper;
 using InventorWrapper.CopyTools;
 using InventorWrapper.Documents;
@@ -17,7 +17,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationDesinger.Build.ApplicationFunctions
+namespace AutomationDesigner.Build.ApplicationFunctions
 {
     public class InventorMethods
     {

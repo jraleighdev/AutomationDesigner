@@ -1,4 +1,4 @@
-﻿using AutomationDesinger.Enums;
+﻿using AutomationDesigner.Enums;
 using SolidworksWrapper;
 using SolidworksWrapper.Constants;
 using SolidworksWrapper.Documents;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationDesinger.Build.ApplicationFunctions
+namespace AutomationDesigner.Build.ApplicationFunctions
 {
     public class SolidworksMethods
     {

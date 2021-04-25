@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationDesinger.Enums
+namespace AutomationDesigner.Enums
 {
     public enum ApplicationTypeEnum
     {
