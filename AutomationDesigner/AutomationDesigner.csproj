@@ -237,7 +237,6 @@
     <Compile Include="Build\ProcessRunBlockSolidworks.cs" />
     <Compile Include="Constants\Commands.cs" />
     <Compile Include="Constants\ConstantStrings.cs" />
-    <Compile Include="Controls\Capture\Inventor\Design\InventorCaptureDesignViewModel.cs" />
     <Compile Include="Controls\Capture\Inventor\InventorCaptureControl.xaml.cs">
       <DependentUpon>InventorCaptureControl.xaml</DependentUpon>
     </Compile>
