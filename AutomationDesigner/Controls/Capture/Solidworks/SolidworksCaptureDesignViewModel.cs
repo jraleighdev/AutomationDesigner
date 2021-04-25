@@ -1,27 +1,25 @@
-﻿using AutomationDesigner.ViewModels.Base;
+﻿using AutomationDesigner.Constants;
+using AutomationDesigner.Helpers;
+using AutomationDesigner.ViewModels.Base;
 using AutomationDesigner.ViewModels.Interfaces.Capture;
+using Microsoft.Office.Interop.Excel;
+using SolidworksWrapper;
+using SolidworksWrapper.CaptureDtos;
+using SolidworksWrapper.Constants;
+using SolidworksWrapper.Documents;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using Excel = Microsoft.Office.Interop.Excel;
-using Microsoft.Office.Interop.Excel;
 using System.Threading.Tasks;
-using AutomationDesigner.Helpers;
-using InventorWrapper.Documents;
-using InventorWrapper;
-using System.Collections.ObjectModel;
-using InventorWrapper.CaptureDto;
-using InventorWrapper.CaptureDto.Enums;
-using AutomationDesigner.Constants;
-using System.Windows.Input;
-using InventorWrapper.Parameters;
-using InventorWrapper.Features;
 using System.Windows.Controls;
+using System.Windows.Input;
+using Excel = Microsoft.Office.Interop.Excel;
 
-namespace AutomationDesigner.Controls.Capture.Inventor
+namespace AutomationDesigner.Controls.Capture.Solidworks
 {
-    public class InventorCaptureDesignViewModel : BaseViewModel, IDimensionCapture, IUpdateExcel, IDisposable
+    public class SolidworksCaptureDesignViewModel : BaseViewModel, IDimensionCapture, IUpdateExcel, IDisposable
     {
         #region Fields
 
@@ -35,13 +33,13 @@ namespace AutomationDesigner.Controls.Capture.Inventor
 
         #region view fields
 
-        private ParameterCaptureDto _selectedParameter;
+        private DimensionCapture _selectedDimension;
 
-        private FeatureCaptureDto _selectedFeature;
+        private FeatureCapture _selectedFeature;
 
-        private ObservableCollection<ParameterCaptureDto> _parameters;
+        private ObservableCollection<DimensionCapture> _dimensions;
 
-        private ObservableCollection<FeatureCaptureDto> _features;
+        private ObservableCollection<FeatureCapture> _features;
 
         private string _selectedCellName;
 
@@ -51,19 +49,19 @@ namespace AutomationDesigner.Controls.Capture.Inventor
 
         #region Handlers
 
-        public InventorApplication.DocumentChangedHandler DocumentChangedHandler;
+        public SolidworksApplication.DocumentChangedHandler DocumentChangedHandler;
 
         #endregion
 
         #region Properties
 
-        public InventorDocument _workingDocument;
+        public SolidworksDocument _workingDocument;
 
         #endregion
 
         #region View properties
-        public string SelectedCellName 
-        { 
+        public string SelectedCellName
+        {
             get => _selectedCellName;
             set
             {
@@ -72,37 +70,39 @@ namespace AutomationDesigner.Controls.Capture.Inventor
             }
         }
 
-        public ParameterCaptureDto SelectedParameter
+        public DimensionCapture SelectedDimension
         {
-            get => _selectedParameter;
+            get => _selectedDimension;
             set
             {
-                _selectedParameter = value;
-                OnPropertyChanged(nameof(SelectedParameter));
+                _selectedDimension = value;
+                DimensionSelectionChanged();
+                OnPropertyChanged(nameof(SelectedDimension));
             }
         }
 
-        public FeatureCaptureDto SelectedFeature
+        public FeatureCapture SelectedFeature
         {
             get => _selectedFeature;
             set
             {
                 _selectedFeature = value;
+                FeatureSelectionChanged();
                 OnPropertyChanged(nameof(SelectedFeature));
             }
         }
 
-        public ObservableCollection<ParameterCaptureDto> Parameters 
-        { 
-            get => _parameters;
+        public ObservableCollection<DimensionCapture> Dimensions
+        {
+            get => _dimensions;
             set
             {
-                _parameters = value;
-                OnPropertyChanged(nameof(Parameters));
+                _dimensions = value;
+                OnPropertyChanged(nameof(Dimensions));
             }
         }
 
-        public ObservableCollection<FeatureCaptureDto> Features
+        public ObservableCollection<FeatureCapture> Features
         {
             get => _features;
             set
@@ -134,11 +134,11 @@ namespace AutomationDesigner.Controls.Capture.Inventor
 
         #endregion
 
-        public InventorCaptureDesignViewModel(UserControl userControl)
+        public SolidworksCaptureDesignViewModel(UserControl userControl )
         {
-            Parameters = new ObservableCollection<ParameterCaptureDto>();
+            Dimensions = new ObservableCollection<DimensionCapture>();
 
-            Features = new ObservableCollection<FeatureCaptureDto>();
+            Features = new ObservableCollection<FeatureCapture>();
 
             _userControl = userControl;
 
@@ -157,16 +157,16 @@ namespace AutomationDesigner.Controls.Capture.Inventor
 
         private void Setup()
         {
-            if (!InventorApplication.Attached)
+            if (!SolidworksApplication.Attached)
             {
-                InventorApplication.Attach();
+                SolidworksApplication.Attach();
             }
 
-            InventorApplication.Listen();
+            SolidworksApplication.Listen();
 
-            DocumentChangedHandler = new InventorApplication.DocumentChangedHandler(UpdateWorkingDocument);
+            DocumentChangedHandler = new SolidworksApplication.DocumentChangedHandler(UpdateWorkingDocument);
 
-            InventorApplication.DocumentChanged += DocumentChangedHandler;
+            SolidworksApplication.DocumentChanged += DocumentChangedHandler;
 
             Globals.ThisAddIn.Application.ActiveWorkbook.SheetActivate += UpdateSelectedSheet;
 
@@ -179,13 +179,13 @@ namespace AutomationDesigner.Controls.Capture.Inventor
 
         public void AddDimension()
         {
-            var parameter = SelectedParameter;
+            var parameter = SelectedDimension;
 
             if (parameter != null)
             {
-                _selectedRange.Value = Commands.Parameter;
+                _selectedRange.Value = Commands.Dimension;
                 _workSheet.Range[$"{ExcelHelpers.GetColumnName(_selectedRange.Column + 1)}{_selectedRange.Row}"].Value = parameter.Name;
-                _workSheet.Range[$"{ExcelHelpers.GetColumnName(_selectedRange.Column + 2)}{_selectedRange.Row}"].Value = InventorApplication.ActiveDocument.Name;
+                _workSheet.Range[$"{ExcelHelpers.GetColumnName(_selectedRange.Column + 2)}{_selectedRange.Row}"].Value = SolidworksApplication.ActiveDocument.Name;
                 _workSheet.Range[$"{ExcelHelpers.GetColumnName(_selectedRange.Column + 3)}{_selectedRange.Row}"].Value = parameter.Value;
             }
 
@@ -196,26 +196,38 @@ namespace AutomationDesigner.Controls.Capture.Inventor
         {
             var feature = SelectedFeature;
 
+            // if the feature is null then continue
             if (feature != null)
             {
-                var command = "";
+                // create a variable to store the command
+                string command;
 
-                switch (feature.Type)
+                // if the active doc is an assembly doc
+                if (SolidworksApplication.ActiveDocument.IsAssemblyDoc)
                 {
-                    case FeatureCaptureType.Component:
-                        command = Commands.ComponentActivity;
-                        break;
-                    case FeatureCaptureType.Feature:
-                        command = Commands.FeatureActivity;
-                        break;
-                    case FeatureCaptureType.Pattern:
+                    // if the feature is pattern type then set to component pattern
+                    if (feature.FeatureType.Contains("Pattern"))
+                    {
                         command = Commands.PatternActivity;
-                        break;
-                    case FeatureCaptureType.Constraint:
-                        command = Commands.ConstraintActivity;
-                        break;
-                    default:
-                        break;
+                    }
+                    else
+                    {
+                        // if the feature is a component then set to component reference
+                        if (feature.FeatureType == FeatureSubTypes.Reference)
+                        {
+                            command = Commands.ComponentActivity;
+                        }
+                        // set to feature reference
+                        else
+                        {
+                            command = Commands.FeatureActivity;
+                        }
+                    }
+                }
+                // set command to feature reference
+                else
+                {
+                    command = Commands.FeatureActivity;
                 }
 
                 // write the command in
@@ -225,7 +237,7 @@ namespace AutomationDesigner.Controls.Capture.Inventor
                 _workSheet.Range[$"{ExcelHelpers.GetColumnName(_selectedRange.Column + 1)}{_selectedRange.Row}"].Value = feature.Name;
 
                 // set the name of the active document
-                _workSheet.Range[$"{ExcelHelpers.GetColumnName(_selectedRange.Column + 2)}{_selectedRange.Row}"].Value = InventorApplication.ActiveDocument.Name;
+                _workSheet.Range[$"{ExcelHelpers.GetColumnName(_selectedRange.Column + 2)}{_selectedRange.Row}"].Value = SolidworksApplication.ActiveDocument.Name;
 
                 // if the feature is suppressed then set the value
                 _workSheet.Range[$"{ExcelHelpers.GetColumnName(_selectedRange.Column + 3)}{_selectedRange.Row}"].Value = feature.Suppressed ? "S" : "U";
@@ -237,7 +249,13 @@ namespace AutomationDesigner.Controls.Capture.Inventor
 
         public void DimensionSelectionChanged()
         {
-            throw new NotImplementedException();
+            if (SelectedDimension == null) return;
+
+            var capturedDim = SelectedDimension;
+
+            SolidworksApplication.ActiveDocument.ClearSelection();
+
+            SolidworksApplication.ActiveDocument.Select(capturedDim.Name, FeatureTypes.Dimension);
         }
 
         public void FeatureSelectionChanged()
@@ -248,19 +266,34 @@ namespace AutomationDesigner.Controls.Capture.Inventor
 
             if (featureCapture != null)
             {
-                InventorApplication.ActiveDocument.ClearSelection();
+                SolidworksApplication.ActiveDocument.ClearSelection();
 
-                InventorApplication.ActiveDocument.Select(featureCapture);
+                string featureType;
+
+                if (featureCapture.FeatureType == FeatureSubTypes.Reference)
+                {
+                    featureType = FeatureTypes.Component;
+                }
+                else if (SolidworksApplication.ActiveDocument.IsAssemblyDoc && featureCapture.FeatureType.Contains("Pattern"))
+                {
+                    featureType = FeatureTypes.ComponentPattern;
+                }
+                else
+                {
+                    featureType = FeatureTypes.BodyFeature;
+                }
+
+                SolidworksApplication.ActiveDocument.Select(featureCapture.Name, featureType);
             }
         }
 
         public async Task CaptureDimensions()
         {
-            this.Parameters.Clear();
+            this.Dimensions.Clear();
             this.Features.Clear();
 
-            var parameters = new List<ParameterCaptureDto>();
-            var features = new List<FeatureCaptureDto>();
+            var dimensions = new List<DimensionCapture>();
+            var features = new List<FeatureCapture>();
 
             await RunCommand(() => Loading, async () =>
             {
@@ -268,37 +301,16 @@ namespace AutomationDesigner.Controls.Capture.Inventor
                 {
                     await Task.Run(() =>
                     {
-                        var param = InventorApplication.ActiveDocument.Parameters;
+                        var dims = SolidworksApplication.ActiveDocument.GetDimensions();
 
-                        var feature = InventorApplication.ActiveDocument.Features;
-
-                        foreach (var p in param)
+                        foreach (var d in dims.Dimensions)
                         {
-                            parameters.Add(new ParameterCaptureDto(p.Name, p.IsUser, p.ConvertedValue));
+                            dimensions.Add(new DimensionCapture(SolidworksFormatters.RemoveDocumentNameFromDimension(d.Name), ConverterHelpers.Round(d.Value, 16)));
                         }
 
-                        foreach (var f in feature)
+                        foreach (var f in dims.Features)
                         {
-                            features.Add(new FeatureCaptureDto(f, f.Name, FeatureCaptureType.Feature, f.Suppressed));
-                        }
-
-                        if (InventorApplication.ActiveDocument.IsAssemblyDoc)
-                        {
-                            var adoc = InventorApplication.ActiveDocument.GetAssemblyDocument();
-
-                            foreach (var c in adoc.Components)
-                            {
-                                if (c.IsPatternElement) continue;
-
-                                features.Add(new FeatureCaptureDto(c, c.Name, FeatureCaptureType.Component, c.Suppressed));
-                            }
-
-                            foreach (var p in adoc.Patterns)
-                            {
-                                if (p.IsPatternElement) continue;
-
-                                features.Add(new FeatureCaptureDto(p, p.Name, FeatureCaptureType.Pattern, p.IsSuppressed));
-                            }
+                            features.Add(new FeatureCapture(f.Name, f.FeatureType, f.Suppressed));
                         }
                     });
                 }
@@ -309,7 +321,7 @@ namespace AutomationDesigner.Controls.Capture.Inventor
             });
 
             this.Features.AddRange(features);
-            this.Parameters.AddRange(parameters);
+            this.Dimensions.AddRange(dimensions);
         }
 
         public void UpdateSelectedCell(Range range)
@@ -340,11 +352,11 @@ namespace AutomationDesigner.Controls.Capture.Inventor
 
         public void UpdateWorkingDocument()
         {
-            _workingDocument = InventorApplication.ActiveDocument;
+            _workingDocument = SolidworksApplication.ActiveDocument;
 
             _userControl.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (System.Action)delegate ()
             {
-                Parameters.Clear();
+                Dimensions.Clear();
                 Features.Clear();
             });
         }
@@ -355,8 +367,8 @@ namespace AutomationDesigner.Controls.Capture.Inventor
         {
             _workSheet.SelectionChange -= UpdateSelectedCell;
             Globals.ThisAddIn.Application.ActiveWorkbook.SheetActivate -= UpdateSelectedSheet;
-            InventorApplication.StopListening();
-            InventorApplication.DocumentChanged -= DocumentChangedHandler;
+            SolidworksApplication.StopListening();
+            SolidworksApplication.DocumentChanged -= DocumentChangedHandler;
         }
     }
 }

@@ -13,18 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AutomationDesigner.Controls.Capture.Inventor
+namespace AutomationDesigner.Controls.Capture.Solidworks
 {
     /// <summary>
-    /// Interaction logic for InventorCaptureControl.xaml
+    /// Interaction logic for SolidworksCaptureControl.xaml
     /// </summary>
-    public partial class InventorCaptureControl : UserControl
+    public partial class SolidworksCaptureControl : UserControl
     {
-        public InventorCaptureControl()
+        public SolidworksCaptureControl()
         {
             InitializeComponent();
 
-            var viewModel = new InventorCaptureDesignViewModel(this);
+            var viewModel = new SolidworksCaptureDesignViewModel(this);
 
             this.DataContext = viewModel;
         }

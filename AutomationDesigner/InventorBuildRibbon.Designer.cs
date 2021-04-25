@@ -49,7 +49,6 @@
             this.InventorCopyDocuments = this.Factory.CreateRibbonButton();
             this.settingsGroup = this.Factory.CreateRibbonGroup();
             this.InventorSettingsButton = this.Factory.CreateRibbonButton();
-            this.button1 = this.Factory.CreateRibbonButton();
             this.solidWorksBuildTab = this.Factory.CreateRibbonTab();
             this.solidworksBuildGroup = this.Factory.CreateRibbonGroup();
             this.solidWorksBuildButton = this.Factory.CreateRibbonButton();
@@ -181,7 +180,6 @@
             // settingsGroup
             // 
             this.settingsGroup.Items.Add(this.InventorSettingsButton);
-            this.settingsGroup.Items.Add(this.button1);
             this.settingsGroup.Label = "Settings";
             this.settingsGroup.Name = "settingsGroup";
             // 
@@ -193,12 +191,6 @@
             this.InventorSettingsButton.Name = "InventorSettingsButton";
             this.InventorSettingsButton.ShowImage = true;
             this.InventorSettingsButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.InventorSettingsButton_Click);
-            // 
-            // button1
-            // 
-            this.button1.Label = "button1";
-            this.button1.Name = "button1";
-            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
             // 
             // solidWorksBuildTab
             // 
@@ -371,7 +363,6 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup inventorDataCapture;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton captureInventorModelData;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton InventorCaptureDrawingData;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
     }
 
     partial class ThisRibbonCollection

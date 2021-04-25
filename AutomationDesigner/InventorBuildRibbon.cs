@@ -1,7 +1,6 @@
 ﻿using InventorWrapper;
 using Microsoft.Office.Tools.Ribbon;
 using Excel = Microsoft.Office.Interop.Excel;
-using System.Threading.Tasks;
 using AutomationDesigner.Helpers;
 using AutomationDesigner.Constants;
 using System.Linq;
@@ -10,16 +9,12 @@ using AutomationDesigner.DTOS;
 using Microsoft.Office.Interop.Excel;
 using System;
 using AutomationDesigner.Build;
-using Microsoft.Office.Core;
 using System.Windows.Forms;
 using AutomationDesigner.Forms;
 using AutomationDesigner.CopyTools;
 using InventorWrapper.CopyTools;
 using AutomationDesigner.Enums;
-using System.ComponentModel.Design;
-using AutomationDesigner.Forms.SubForms;
 using Syncfusion.Data.Extensions;
-using System.IO;
 using SolidworksWrapper;
 using SolidworksWrapper.Enums;
 using SolidworksWrapper.CopyTools;
@@ -660,7 +655,7 @@ namespace AutomationDesigner
 
         private void solidworksCaptureButton_Click(object sender, RibbonControlEventArgs e)
         {
-            var captureForm = new CaptureDesignFormSolidworks
+            var captureForm = new SolidworksCaptureForm
             {
                 TopMost = true
             };
@@ -670,7 +665,7 @@ namespace AutomationDesigner
 
         private void captureInventorModelData_Click(object sender, RibbonControlEventArgs e)
         {
-            var captureForm = new CaptureDesignFormInventor
+            var captureForm = new InventorCaptureForm
             {
                 TopMost = true
             };
@@ -695,13 +690,6 @@ namespace AutomationDesigner
             var captureForm = new DrawingCaptureForm();
 
             captureForm.ShowDialog();
-        }
-
-        private void button1_Click(object sender, RibbonControlEventArgs e)
-        {
-            var testForm = new InventorCaptureForm();
-
-            testForm.Show();
         }
     }
 }
