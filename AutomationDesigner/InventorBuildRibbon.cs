@@ -18,8 +18,8 @@ using Syncfusion.Data.Extensions;
 using SolidworksWrapper;
 using SolidworksWrapper.Enums;
 using SolidworksWrapper.CopyTools;
-using AutomationDesigner.Forms.DrawingCapture;
 using AutomationDesigner.Forms.Capture;
+using AutomationDesigner.Forms.AppSettings;
 
 namespace AutomationDesigner
 {
@@ -469,9 +469,9 @@ namespace AutomationDesigner
 
         private void solidworksSettings_Click(object sender, RibbonControlEventArgs e)
         {
-            var solidWorksSettingForm = new SolidworksSettingsForm();
+            //var solidWorksSettingForm = new SolidworksSettingsForm();
 
-            solidWorksSettingForm.Show();
+            //solidWorksSettingForm.Show();
         }
 
         #endregion
@@ -680,16 +680,11 @@ namespace AutomationDesigner
             settingsForm.ShowDialog();
         }
 
-        private void InventorCaptureDrawingData_Click(object sender, RibbonControlEventArgs e)
+        private void button1_Click(object sender, RibbonControlEventArgs e)
         {
-            if (!InventorApplication.Attached)
-            {
-                InventorApplication.Attach();
-            }
+            var newSettingsForm = new InventorSettingsForm();
 
-            var captureForm = new DrawingCaptureForm();
-
-            captureForm.ShowDialog();
+            newSettingsForm.ShowDialog();
         }
     }
 }

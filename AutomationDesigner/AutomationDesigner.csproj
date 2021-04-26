@@ -237,6 +237,7 @@
     <Compile Include="Build\ProcessRunBlockSolidworks.cs" />
     <Compile Include="Constants\Commands.cs" />
     <Compile Include="Constants\ConstantStrings.cs" />
+    <Compile Include="Controls\AppSettings\Inventor\InventorSettingsViewModel.cs" />
     <Compile Include="Controls\Capture\Inventor\InventorCaptureControl.xaml.cs">
       <DependentUpon>InventorCaptureControl.xaml</DependentUpon>
     </Compile>
@@ -244,6 +245,9 @@
       <DependentUpon>SolidworksCaptureControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Capture\Solidworks\SolidworksCaptureDesignViewModel.cs" />
+    <Compile Include="Controls\AppSettings\Inventor\InventorSettingsControl.xaml.cs">
+      <DependentUpon>InventorSettingsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CopyTools\CopyDocumentItem.cs" />
     <Compile Include="DTOS\CommandItem.cs" />
     <Compile Include="Enums\ApplicationTypeEnum.cs" />
@@ -260,18 +264,24 @@
     <Compile Include="Forms\Capture\SolidworksCaptureForm.Designer.cs">
       <DependentUpon>SolidworksCaptureForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AppSettings\InventorSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AppSettings\InventorSettingsForm.Designer.cs">
+      <DependentUpon>InventorSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AppSettings\SolidworksSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AppSettings\SolidworksSettingsForm.Designer.cs">
+      <DependentUpon>SolidworksSettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ExpressionHelpers.cs" />
     <Compile Include="Helpers\Mapping.cs" />
     <Compile Include="ValueConverters\BaseValueConverter.cs" />
     <Compile Include="ValueConverters\BooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\Base\RelayCommand.cs" />
-    <Compile Include="Forms\DrawingCapture\DrawingCaptureForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DrawingCapture\DrawingCaptureForm.Designer.cs">
-      <DependentUpon>DrawingCaptureForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\InputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -308,11 +318,14 @@
     <EmbeddedResource Include="Forms\Capture\SolidworksCaptureForm.resx">
       <DependentUpon>SolidworksCaptureForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DrawingCapture\DrawingCaptureForm.resx">
-      <DependentUpon>DrawingCaptureForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\InputForm.resx">
       <DependentUpon>InputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppSettings\InventorSettingsForm.resx">
+      <DependentUpon>InventorSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppSettings\SolidworksSettingsForm.resx">
+      <DependentUpon>SolidworksSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SolidworksSettingsForm.resx">
       <DependentUpon>SolidworksSettingsForm.cs</DependentUpon>
@@ -401,6 +414,7 @@
     <Resource Include="Icons\solidworks-settings-32 %281%29.png" />
     <Resource Include="Icons\solidworks-stop-32 %282%29.png" />
     <Resource Include="Icons\solidworks-template-32 %281%29.png" />
+    <Resource Include="Icons\icons8-delete-16.png" />
     <Content Include="References\Autodesk.Inventor.Interop.dll" />
   </ItemGroup>
   <ItemGroup>
@@ -412,6 +426,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\AppSettings\Inventor\InventorSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\AppSettings\Solidworks\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
