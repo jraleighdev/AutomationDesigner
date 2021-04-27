@@ -13,19 +13,13 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace AutomationDesigner.Build
 {
-    
-
     public class ExcelBaseParse : IDisposable
     {
         protected Excel.Worksheet _worksheet;
 
-        public List<string> Logs { get; set; }
-
-
         public ExcelBaseParse(Excel.Worksheet worksheet)
         {
             _worksheet = worksheet;
-            Logs = new List<string>();
         }
 
         #region Value Helpers 

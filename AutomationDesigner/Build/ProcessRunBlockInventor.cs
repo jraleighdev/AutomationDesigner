@@ -16,6 +16,7 @@ using AutomationDesigner.Enums;
 using AutomationDesigner.Helpers;
 using Microsoft.VisualStudio.Tools.Applications.Runtime;
 using InventorWrapper.Representation;
+using AutomationDesigner.Logs;
 
 namespace AutomationDesigner.Build
 {
@@ -68,7 +69,7 @@ namespace AutomationDesigner.Build
         /// <param name="rangeName"></param>
         /// <param name="rangeParameter"></param>
         /// <returns></returns>
-        public List<string> Run(string rangeName = "", string rangeParameter = "")
+        public void Run(string rangeName = "", string rangeParameter = "")
         {
             // The start cell
             Excel.Range startCell = null;
@@ -146,7 +147,7 @@ namespace AutomationDesigner.Build
 
                         if (_workingDocument == null)
                         {
-                            Logs.Add($"Could not find document {workingDocumentName}. If all occurences are suppressed you can ignore this error.");
+                            LogManager.Add($"Could not find document {workingDocumentName}. If all occurences are suppressed you can ignore this error.");
                             i++;
                             continue;
                         }
@@ -161,7 +162,7 @@ namespace AutomationDesigner.Build
 
                         if (_workingDocument == null)
                         {
-                            Logs.Add($"Could not find document {workingDocumentName}. If all occurences are suppressed you can ignore this error.");
+                            LogManager.Add($"Could not find document {workingDocumentName}. If all occurences are suppressed you can ignore this error.");
                             i++;
                             continue;
                         }
@@ -239,8 +240,6 @@ namespace AutomationDesigner.Build
                         }
 
                         runBlock.Run(subName, GetString(i, value));
-
-                        Logs.AddRange(runBlock.Logs);
                         break;
                     case Commands.If:
                         ValidateIf(i, typeCol);
@@ -301,10 +300,6 @@ namespace AutomationDesigner.Build
             InventorApplication.ActiveDocument.Update();
 
             InventorApplication.ActiveDocument.Save();
-
-            Logs.AddRange(_methods.Logs);
-
-            return Logs;
         }
     }
 }
