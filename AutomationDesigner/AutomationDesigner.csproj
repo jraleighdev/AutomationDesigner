@@ -265,6 +265,10 @@
     </Compile>
     <Compile Include="Helpers\ExpressionHelpers.cs" />
     <Compile Include="Helpers\Mapping.cs" />
+    <Compile Include="Logs\LogData.cs" />
+    <Compile Include="Logs\LogManager.cs" />
+    <Compile Include="Logs\LogTypes.cs" />
+    <Compile Include="Logs\LogWriter.cs" />
     <Compile Include="ValueConverters\BaseValueConverter.cs" />
     <Compile Include="ValueConverters\BooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
