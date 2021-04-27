@@ -675,13 +675,6 @@ namespace AutomationDesigner
 
         private void InventorSettingsButton_Click(object sender, RibbonControlEventArgs e)
         {
-            var settingsForm = new SettingsForm();
-
-            settingsForm.ShowDialog();
-        }
-
-        private void button1_Click(object sender, RibbonControlEventArgs e)
-        {
             var newSettingsForm = new InventorSettingsForm();
 
             newSettingsForm.ShowDialog();

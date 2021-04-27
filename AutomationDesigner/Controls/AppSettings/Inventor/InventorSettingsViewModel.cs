@@ -1,15 +1,7 @@
 ﻿using AutomationDesigner.Helpers;
-using AutomationDesigner.Models;
 using AutomationDesigner.ViewModels.Base;
 using InventorWrapper.General;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace AutomationDesigner.Controls.AppSettings.Inventor
@@ -26,9 +18,9 @@ namespace AutomationDesigner.Controls.AppSettings.Inventor
 
         private ObservableCollection<AngularUnits> _angularUnits;
 
-        private ObservableCollection<FilePathContains> _filePathContains;
+        private ObservableCollection<FilePathContainsViewModel> _filePathContains;
 
-        private FilePathContains _selectedPath;
+        private FilePathContainsViewModel _selectedPath;
 
         private readonly InventorSettingsControl _inventorSettingsControl;
 
@@ -38,7 +30,7 @@ namespace AutomationDesigner.Controls.AppSettings.Inventor
 
         #region Properties
 
-        public FilePathContains SelectedPath
+        public FilePathContainsViewModel SelectedPath
         {
             get => _selectedPath;
             set
@@ -59,7 +51,7 @@ namespace AutomationDesigner.Controls.AppSettings.Inventor
             }
         }
 
-        public ObservableCollection<FilePathContains> FilePathContains
+        public ObservableCollection<FilePathContainsViewModel> FilePathContains
         {
             get => _filePathContains;
             set
@@ -128,7 +120,7 @@ namespace AutomationDesigner.Controls.AppSettings.Inventor
             // Collections
             LengthUnits = new ObservableCollection<LengthUnits>();
             AngularUnits = new ObservableCollection<AngularUnits>();
-            FilePathContains = new ObservableCollection<FilePathContains>();
+            FilePathContains = new ObservableCollection<FilePathContainsViewModel>();
 
             // Add Data
             LengthUnits.AddRange(UnitManager.MeasurementUnits);
@@ -137,7 +129,7 @@ namespace AutomationDesigner.Controls.AppSettings.Inventor
             // Commands
             SaveCommand = new RelayCommand(Save);
             CancelCommand = new RelayCommand(Close);
-            DeleteCommand = new RelayCommand(Delete);
+            DeleteCommand = new RelayParamCommand(Delete);
             AddCommand = new RelayCommand(Add);
 
             // Fields
@@ -168,20 +160,22 @@ namespace AutomationDesigner.Controls.AppSettings.Inventor
         {
             foreach (var s in Settings.Default.PathsToAvoid)
             {
-                FilePathContains.Add(new FilePathContains { Name = s });
+                FilePathContains.Add(new FilePathContainsViewModel { IsReadOnly = true, Name = s });
             }
         }
 
         private void Add()
         {
-            FilePathContains.Add(new Models.FilePathContains { Name = NewPath });
+            FilePathContains.Add(new FilePathContainsViewModel { IsReadOnly = true, Name = NewPath });
         }
 
-        private void Delete()
+        private void Delete(object value)
         {
-            if (SelectedPath != null)
+            var pathToDelete = value as FilePathContainsViewModel;
+
+            if (pathToDelete != null)
             {
-                FilePathContains.Remove(SelectedPath);
+                FilePathContains.Remove(pathToDelete);
             }
         }
 

@@ -39,5 +39,25 @@ namespace AutomationDesigner.Controls.AppSettings.Inventor
         {
             CloseForm();
         }
+
+        private void TextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ViewModelFinder(sender).IsReadOnly = false;
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ViewModelFinder(sender).IsReadOnly = true;
+        }
+
+        private FilePathContainsViewModel ViewModelFinder(object sender)
+        {
+            if (sender is TextBox text)
+            {
+                return text.DataContext as FilePathContainsViewModel;
+            }
+
+            return null;
+        }
     }
 }

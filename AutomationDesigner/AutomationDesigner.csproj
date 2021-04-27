@@ -237,6 +237,7 @@
     <Compile Include="Build\ProcessRunBlockSolidworks.cs" />
     <Compile Include="Constants\Commands.cs" />
     <Compile Include="Constants\ConstantStrings.cs" />
+    <Compile Include="Controls\AppSettings\Inventor\FilePathContainsViewModel.cs" />
     <Compile Include="Controls\AppSettings\Inventor\InventorSettingsViewModel.cs" />
     <Compile Include="Controls\Capture\Inventor\InventorCaptureControl.xaml.cs">
       <DependentUpon>InventorCaptureControl.xaml</DependentUpon>
@@ -294,22 +295,16 @@
     <Compile Include="Forms\SolidworksSettingsForm.Designer.cs">
       <DependentUpon>SolidworksSettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SettingsForm.Designer.cs">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\CollectionHelpers.cs" />
     <Compile Include="Helpers\ConverterHelpers.cs" />
     <Compile Include="Helpers\ExcelHelpers.cs" />
     <Compile Include="Helpers\FractionConverter.cs" />
     <Compile Include="Helpers\SolidworksFormatters.cs" />
-    <Compile Include="Models\FilePathContains.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controls\Capture\Inventor\InventorCaptureDesignViewModel.cs" />
+    <Compile Include="ViewModels\Base\RelayParamCommand.cs" />
     <Compile Include="ViewModels\Interfaces\Capture\IDimensionCapture.cs" />
     <Compile Include="ViewModels\Interfaces\Capture\IUpdateExcel.cs" />
     <EmbeddedResource Include="Forms\Capture\InventorCaptureForm.resx">
@@ -329,9 +324,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SolidworksSettingsForm.resx">
       <DependentUpon>SolidworksSettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SettingsForm.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
