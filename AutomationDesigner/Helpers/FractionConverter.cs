@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationDesinger.Helpers
+namespace AutomationDesigner.Helpers
 {
     public static class FractionConverter
     {

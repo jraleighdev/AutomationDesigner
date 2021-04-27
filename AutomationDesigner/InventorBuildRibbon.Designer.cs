@@ -1,4 +1,4 @@
-﻿namespace AutomationDesinger
+﻿namespace AutomationDesigner
 {
     partial class InventorBuildRibbon : Microsoft.Office.Tools.Ribbon.RibbonBase
     {
@@ -43,7 +43,6 @@
             this.InventorBuildTemplate = this.Factory.CreateRibbonButton();
             this.inventorDataCapture = this.Factory.CreateRibbonGroup();
             this.captureInventorModelData = this.Factory.CreateRibbonButton();
-            this.InventorCaptureDrawingData = this.Factory.CreateRibbonButton();
             this.copyGroup = this.Factory.CreateRibbonGroup();
             this.InventorGetRefButton = this.Factory.CreateRibbonButton();
             this.InventorCopyDocuments = this.Factory.CreateRibbonButton();
@@ -129,7 +128,6 @@
             // inventorDataCapture
             // 
             this.inventorDataCapture.Items.Add(this.captureInventorModelData);
-            this.inventorDataCapture.Items.Add(this.InventorCaptureDrawingData);
             this.inventorDataCapture.Label = "Capture";
             this.inventorDataCapture.Name = "inventorDataCapture";
             // 
@@ -141,14 +139,6 @@
             this.captureInventorModelData.Name = "captureInventorModelData";
             this.captureInventorModelData.ShowImage = true;
             this.captureInventorModelData.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.captureInventorModelData_Click);
-            // 
-            // InventorCaptureDrawingData
-            // 
-            this.InventorCaptureDrawingData.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.InventorCaptureDrawingData.Label = "Capture Drawing Data";
-            this.InventorCaptureDrawingData.Name = "InventorCaptureDrawingData";
-            this.InventorCaptureDrawingData.ShowImage = true;
-            this.InventorCaptureDrawingData.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.InventorCaptureDrawingData_Click);
             // 
             // copyGroup
             // 
@@ -362,7 +352,6 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton solidworksCaptureButton;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup inventorDataCapture;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton captureInventorModelData;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton InventorCaptureDrawingData;
     }
 
     partial class ThisRibbonCollection

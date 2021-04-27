@@ -24,8 +24,8 @@
     <ProjectGuid>{78D0570C-581B-430A-ADF5-E9D810532210}</ProjectGuid>
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <RootNamespace>AutomationDesinger</RootNamespace>
-    <AssemblyName>AutomationDesinger</AssemblyName>
+    <RootNamespace>AutomationDesigner</RootNamespace>
+    <AssemblyName>AutomationDesigner</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
     <IsWebBootstrapper>False</IsWebBootstrapper>
@@ -38,10 +38,10 @@
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>0</UpdateInterval>
     <UpdateIntervalUnits>days</UpdateIntervalUnits>
-    <ProductName>AutomationDesinger</ProductName>
+    <ProductName>AutomationDesigner</ProductName>
     <PublisherName>DesignIntent</PublisherName>
     <SupportUrl />
-    <FriendlyName>AutomationDesinger</FriendlyName>
+    <FriendlyName>AutomationDesigner</FriendlyName>
     <OfficeApplicationDescription />
     <LoadBehavior>3</LoadBehavior>
   </PropertyGroup>
@@ -123,41 +123,38 @@
   -->
   <ItemGroup>
     <Reference Include="Accessibility" />
+    <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.4.4.0\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="InventorWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\InventorWrapper.1.0.1\lib\net472\InventorWrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.2.4.5\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="SolidworksWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SolidworksWrapper.1.0.0\lib\net472\SolidworksWrapper.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Core.WinForms, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
-    <Reference Include="Syncfusion.Data.WinForms, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
-    <Reference Include="Syncfusion.Edit.Windows, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
-    <Reference Include="Syncfusion.Grid.Base, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
-    <Reference Include="Syncfusion.Grid.Windows, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
-    <Reference Include="Syncfusion.GridCommon.WinForms, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
-    <Reference Include="Syncfusion.SfDataGrid.WinForms, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
-    <Reference Include="Syncfusion.SfInput.WinForms, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
-    <Reference Include="Syncfusion.SfListView.WinForms, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
-    <Reference Include="Syncfusion.Shared.Base, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\programs\syncfusion\Windows\18.1.0.42\Assemblies\4.6\Syncfusion.Shared.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.Tools.Base, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
-    <Reference Include="Syncfusion.Tools.Windows, Version=18.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\programs\syncfusion\Windows\18.1.0.42\Assemblies\4.6\Syncfusion.Tools.Windows.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
@@ -198,7 +195,7 @@
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <Private>False</Private>
-      <EmbedInteropTypes>true</EmbedInteropTypes>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <Private>False</Private>
@@ -222,71 +219,88 @@
     <Compile Include="Build\ProcessRunBlockSolidworks.cs" />
     <Compile Include="Constants\Commands.cs" />
     <Compile Include="Constants\ConstantStrings.cs" />
+    <Compile Include="Controls\AppSettings\Inventor\FilePathContainsViewModel.cs" />
+    <Compile Include="Controls\AppSettings\Inventor\InventorSettingsViewModel.cs" />
+    <Compile Include="Controls\AppSettings\Solidworks\SolidworksSettingsControl.xaml.cs">
+      <DependentUpon>SolidworksSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AppSettings\Solidworks\SolidworksSettingsViewModel.cs" />
+    <Compile Include="Controls\Capture\Inventor\InventorCaptureControl.xaml.cs">
+      <DependentUpon>InventorCaptureControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Capture\Solidworks\SolidworksCaptureControl.xaml.cs">
+      <DependentUpon>SolidworksCaptureControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Capture\Solidworks\SolidworksCaptureDesignViewModel.cs" />
+    <Compile Include="Controls\AppSettings\Inventor\InventorSettingsControl.xaml.cs">
+      <DependentUpon>InventorSettingsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CopyTools\CopyDocumentItem.cs" />
     <Compile Include="DTOS\CommandItem.cs" />
     <Compile Include="Enums\ApplicationTypeEnum.cs" />
     <Compile Include="Enums\SuppresionType.cs" />
-    <Compile Include="Forms\Base\BaseViewModel.cs" />
-    <Compile Include="Forms\Base\RelayCommand.cs" />
-    <Compile Include="Forms\CaptureDesignForm.cs">
+    <Compile Include="Forms\Capture\InventorCaptureForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CaptureDesignForm.Designer.cs">
-      <DependentUpon>CaptureDesignForm.cs</DependentUpon>
+    <Compile Include="Forms\Capture\InventorCaptureForm.Designer.cs">
+      <DependentUpon>InventorCaptureForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DrawingCapture\DrawingCaptureForm.cs">
+    <Compile Include="Forms\Capture\SolidworksCaptureForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DrawingCapture\DrawingCaptureForm.Designer.cs">
-      <DependentUpon>DrawingCaptureForm.cs</DependentUpon>
+    <Compile Include="Forms\Capture\SolidworksCaptureForm.Designer.cs">
+      <DependentUpon>SolidworksCaptureForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AppSettings\InventorSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AppSettings\InventorSettingsForm.Designer.cs">
+      <DependentUpon>InventorSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AppSettings\SolidworksSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AppSettings\SolidworksSettingsForm.Designer.cs">
+      <DependentUpon>SolidworksSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ExpressionHelpers.cs" />
+    <Compile Include="Helpers\Mapping.cs" />
+    <Compile Include="ValueConverters\BaseValueConverter.cs" />
+    <Compile Include="ValueConverters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="ViewModels\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Base\RelayCommand.cs" />
     <Compile Include="Forms\InputForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\InputForm.Designer.cs">
       <DependentUpon>InputForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SolidworksSettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SolidworksSettingsForm.Designer.cs">
-      <DependentUpon>SolidworksSettingsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SettingsForm.Designer.cs">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SubForms\CaptureDesignFormInventor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SubForms\CaptureDesignFormSolidworks.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Helpers\CollectionHelpers.cs" />
     <Compile Include="Helpers\ConverterHelpers.cs" />
     <Compile Include="Helpers\ExcelHelpers.cs" />
     <Compile Include="Helpers\FractionConverter.cs" />
     <Compile Include="Helpers\SolidworksFormatters.cs" />
-    <Compile Include="Models\FilePathContains.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="Forms\CaptureDesignForm.resx">
-      <DependentUpon>CaptureDesignForm.cs</DependentUpon>
+    <Compile Include="Controls\Capture\Inventor\InventorCaptureDesignViewModel.cs" />
+    <Compile Include="ViewModels\Base\RelayParamCommand.cs" />
+    <Compile Include="ViewModels\Interfaces\Capture\IDimensionCapture.cs" />
+    <Compile Include="ViewModels\Interfaces\Capture\IUpdateExcel.cs" />
+    <EmbeddedResource Include="Forms\Capture\InventorCaptureForm.resx">
+      <DependentUpon>InventorCaptureForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DrawingCapture\DrawingCaptureForm.resx">
-      <DependentUpon>DrawingCaptureForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Capture\SolidworksCaptureForm.resx">
+      <DependentUpon>SolidworksCaptureForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InputForm.resx">
       <DependentUpon>InputForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SolidworksSettingsForm.resx">
-      <DependentUpon>SolidworksSettingsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AppSettings\InventorSettingsForm.resx">
+      <DependentUpon>InventorSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SettingsForm.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AppSettings\SolidworksSettingsForm.resx">
+      <DependentUpon>SolidworksSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -352,25 +366,45 @@
     <None Include="Resources\icons8-input-16.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icons\icons8-autodesk-32.png" />
-    <Content Include="Icons\icons8-collect-16.png" />
-    <Content Include="Icons\icons8-collect-32.png" />
-    <Content Include="Icons\icons8-copy-32.png" />
-    <Content Include="Icons\icons8-plus-16.png" />
-    <Content Include="Icons\icons8-read-32.png" />
-    <Content Include="Icons\icons8-settings-32.png" />
-    <Content Include="Icons\icons8-solidworks-32.png" />
-    <Content Include="Icons\icons8-stop-32 %281%29.png" />
-    <Content Include="Icons\icons8-template-32.png" />
-    <Content Include="Icons\icons8-wrench-32.png" />
-    <Content Include="Icons\solidworks-capture-32.png" />
-    <Content Include="Icons\solidworks-copy-32 %281%29.png" />
-    <Content Include="Icons\solidworks-read-32 %281%29.png" />
-    <Content Include="Icons\solidworks-settings-32 %281%29.png" />
-    <Content Include="Icons\solidworks-stop-32 %282%29.png" />
-    <Content Include="Icons\solidworks-template-32 %281%29.png" />
+    <Resource Include="Icons\icons8-autodesk-32.png" />
+    <Resource Include="Icons\icons8-collect-16.png" />
+    <Resource Include="Icons\icons8-collect-32.png" />
+    <Resource Include="Icons\icons8-copy-32.png" />
+    <Resource Include="Icons\icons8-plus-16.png" />
+    <Resource Include="Icons\icons8-read-32.png" />
+    <Resource Include="Icons\icons8-settings-32.png" />
+    <Resource Include="Icons\icons8-solidworks-32.png" />
+    <Resource Include="Icons\icons8-stop-32 %281%29.png" />
+    <Resource Include="Icons\icons8-template-32.png" />
+    <Resource Include="Icons\icons8-wrench-32.png" />
+    <Resource Include="Icons\solidworks-capture-32.png" />
+    <Resource Include="Icons\solidworks-copy-32 %281%29.png" />
+    <Resource Include="Icons\solidworks-read-32 %281%29.png" />
+    <Resource Include="Icons\solidworks-settings-32 %281%29.png" />
+    <Resource Include="Icons\solidworks-stop-32 %282%29.png" />
+    <Resource Include="Icons\solidworks-template-32 %281%29.png" />
+    <Resource Include="Icons\icons8-delete-16.png" />
     <Content Include="References\Autodesk.Inventor.Interop.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\AppSettings\Solidworks\SolidworksSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Capture\Inventor\InventorCaptureControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Capture\Solidworks\SolidworksCaptureControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\AppSettings\Inventor\InventorSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -382,7 +416,7 @@
     <ManifestKeyFile>AutomationDesigner_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>F919492D03525E0FFAC84D2F91C44393E6E1EF0F</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>EE45B05A7E61B29049A69A25E5A12411F72E6AB7</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -393,7 +427,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
         <ProjectProperties HostName="Excel" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Excel" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\16.0\Excel\InstallRoot\Path#excel.exe" DebugInfoCommandLine="/x" AddItemTemplatesGuid="{51063C3A-E220-4D12-8922-BDA915ACD783}" />
-        <Host Name="Excel" GeneratedCodeNamespace="AutomationDesinger" PublishedHash="69C324AB27932AA2FBF2B7EA72250886FF164DE6" IconIndex="0">
+        <Host Name="Excel" GeneratedCodeNamespace="AutomationDesigner" PublishedHash="69C324AB27932AA2FBF2B7EA72250886FF164DE6" IconIndex="0">
           <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" PublishedHash="00017200105015B2A41AA7115A72B0BF5226703B" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
         </Host>
       </FlavorProperties>

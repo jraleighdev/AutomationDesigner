@@ -1,31 +1,26 @@
 ﻿using InventorWrapper;
 using Microsoft.Office.Tools.Ribbon;
 using Excel = Microsoft.Office.Interop.Excel;
-using System.Threading.Tasks;
-using AutomationDesinger.Helpers;
-using AutomationDesinger.Constants;
+using AutomationDesigner.Helpers;
+using AutomationDesigner.Constants;
 using System.Linq;
 using System.Collections.Generic;
-using AutomationDesinger.DTOS;
+using AutomationDesigner.DTOS;
 using Microsoft.Office.Interop.Excel;
 using System;
-using AutomationDesinger.Build;
-using Microsoft.Office.Core;
+using AutomationDesigner.Build;
 using System.Windows.Forms;
-using AutomationDesinger.Forms;
-using AutomationDesinger.CopyTools;
+using AutomationDesigner.Forms;
+using AutomationDesigner.CopyTools;
 using InventorWrapper.CopyTools;
-using AutomationDesinger.Enums;
-using System.ComponentModel.Design;
-using AutomationDesinger.Forms.SubForms;
-using Syncfusion.Data.Extensions;
-using System.IO;
+using AutomationDesigner.Enums;
 using SolidworksWrapper;
 using SolidworksWrapper.Enums;
 using SolidworksWrapper.CopyTools;
-using AutomationDesinger.Forms.DrawingCapture;
+using AutomationDesigner.Forms.Capture;
+using AutomationDesigner.Forms.AppSettings;
 
-namespace AutomationDesinger
+namespace AutomationDesigner
 {
     public partial class InventorBuildRibbon
     {
@@ -473,9 +468,9 @@ namespace AutomationDesinger
 
         private void solidworksSettings_Click(object sender, RibbonControlEventArgs e)
         {
-            var solidWorksSettingForm = new SolidworksSettingsForm();
+            var solidworksSettingsForm = new SolidworksSettingsForm();
 
-            solidWorksSettingForm.Show();
+            solidworksSettingsForm.ShowDialog();
         }
 
         #endregion
@@ -659,7 +654,7 @@ namespace AutomationDesinger
 
         private void solidworksCaptureButton_Click(object sender, RibbonControlEventArgs e)
         {
-            var captureForm = new CaptureDesignFormSolidworks
+            var captureForm = new SolidworksCaptureForm
             {
                 TopMost = true
             };
@@ -669,7 +664,7 @@ namespace AutomationDesinger
 
         private void captureInventorModelData_Click(object sender, RibbonControlEventArgs e)
         {
-            var captureForm = new CaptureDesignFormInventor
+            var captureForm = new InventorCaptureForm
             {
                 TopMost = true
             };
@@ -679,21 +674,9 @@ namespace AutomationDesinger
 
         private void InventorSettingsButton_Click(object sender, RibbonControlEventArgs e)
         {
-            var settingsForm = new SettingsForm();
+            var newSettingsForm = new InventorSettingsForm();
 
-            settingsForm.ShowDialog();
-        }
-
-        private void InventorCaptureDrawingData_Click(object sender, RibbonControlEventArgs e)
-        {
-            if (!InventorApplication.Attached)
-            {
-                InventorApplication.Attach();
-            }
-
-            var captureForm = new DrawingCaptureForm();
-
-            captureForm.ShowDialog();
+            newSettingsForm.ShowDialog();
         }
     }
 }

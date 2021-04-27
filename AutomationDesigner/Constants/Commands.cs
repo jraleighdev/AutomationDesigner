@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationDesinger.Constants
+namespace AutomationDesigner.Constants
 {
     public class Commands
     {

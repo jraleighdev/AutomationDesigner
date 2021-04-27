@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AutomationDesinger.Forms
+namespace AutomationDesigner.Forms
 {
     public partial class InputForm : Form
     {

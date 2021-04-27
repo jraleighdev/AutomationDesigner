@@ -1,4 +1,4 @@
-﻿using AutomationDesinger.Enums;
+﻿using AutomationDesigner.Enums;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Text;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationDesinger.DTOS
+namespace AutomationDesigner.DTOS
 {
     public class CommandItem
     {

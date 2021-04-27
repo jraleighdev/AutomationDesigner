@@ -117,45 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="gridButtonColumn1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAYNJREFUOE+V
-        U1tLwmAY3nVdVL+ifk2nyyCIIEWwuSBSaJhueqGXCYFX5T5K58IDlJMOP8G80EgFDz+gi7yMXaw9n/tg
-        6pfUAw9se9/nPU/gYV87XfYReVvMqwrov41u+bKxJdf8O/auImshPUlUMzMgTcOqdB5tUHszLMW8HIR0
-        lRxcS6uu+zSCd7GNcCXdrvZM+2n0ymW1V7PDpVQ7QNR1VzYBMkNcHz5zhV7Why/2WTndmqpEKiQ0Xub3
-        zw/K2e+o5MRIEirGwNDzrBM4HI8oeTallunTwfo1eZc07y2e06IAWsOwsCkh6KwJk2YGlMyEX99jSvbu
-        bafsaJwVXwhiPh6rdP8foNR5sI8LSlQ4yp3vYOfM4CUT8mxoIUDkTTpEHAnPaVGAOBsiINI11uacULK3
-        bMZq11ljMaFRMYCjwIX9+ZBKqZYvG15x5RPgPBGEVwkjMkcc8SGRp0+ZAZVIuppTzExfaxQtbAfEM3qW
-        9MTNXGYeMBxM2FlTHMQz/3cWhB+PYm2UyA85PQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="resource.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAlRJREFUWEft
-        V7FOAkEUJDHGH7DRqL21P2ABklBDYaE0clQUxGiIcFTaAhpjoqjxoIPOmGiMYNArjFIIxN4SI52iBQXe
-        7O0z53EIklttnGSSZd/ezrD33j5wDIL53eVRfzoyYyTmeFg8/OlVKZxbf4mfJJ5BjDHHw+IBsR31qH3+
-        WGDE+N+AcAML6dVpiICL+ytZswHMURxr+WP2QdqVhgNKrKAlXAuC+YfjTwMYYy6c32gFMrFLrOWP2Qsy
-        kSjuNUmcmLo6eFtS1tTQVmiELxcDX843FFSiZ0YTEA9m5IKwb24GTEhZ+TRVOnjdVo+atosjiXptiHgw
-        EyuA/az9UWIikwNK9LrX+8TG/YhLilzEnnyqN7AYGa0dbfE7AdXlGgf5xw7gWZwQKqerAb2x6PVLpDrn
-        ydVhQnU6p+48nlrV56vXNGrj6u3c3CQPM5A48sR8TxBZA0MnQzPBIiOpzq1MQLwRj7ffk0nGhiy3tbkK
-        D38Rxx50TxipN7DIDDOAjkYlZUVkupSJsZzAkVe93icSJ2pz9bLbPUbim6VDJt6N0PyRASo1ZkA7drOB
-        CjdgLFGrvYhfDAzwCqo4dhLHuOzx3POwnvlZ+aKvVzBIEiLh8M5xEjh6jG9mZyd4mMFoAnt1TUIrINhP
-        GeLIQf6xA2Ti2zK0Ahb/6UX051dxL5A4Ss1YojwsFkZxKqlfMwFxLTeKVjUu3ASJI6NRVnRPgFTn+k8y
-        WcxPMiQRMhmke4IMmOvc1oSzAkTMBjDHw+LxbwBiaCboaKDeWH7RgN7A7Ph77nB8AB3gimFhNAOuAAAA
-        AElFTkSuQmCC
-</value>
-  </data>
-  <data name="gridButtonColumn2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAYNJREFUOE+V
-        U1tLwmAY3nVdVL+ifk2nyyCIIEWwuSBSaJhueqGXCYFX5T5K58IDlJMOP8G80EgFDz+gi7yMXaw9n/tg
-        6pfUAw9se9/nPU/gYV87XfYReVvMqwrov41u+bKxJdf8O/auImshPUlUMzMgTcOqdB5tUHszLMW8HIR0
-        lRxcS6uu+zSCd7GNcCXdrvZM+2n0ymW1V7PDpVQ7QNR1VzYBMkNcHz5zhV7Why/2WTndmqpEKiQ0Xub3
-        zw/K2e+o5MRIEirGwNDzrBM4HI8oeTallunTwfo1eZc07y2e06IAWsOwsCkh6KwJk2YGlMyEX99jSvbu
-        bafsaJwVXwhiPh6rdP8foNR5sI8LSlQ4yp3vYOfM4CUT8mxoIUDkTTpEHAnPaVGAOBsiINI11uacULK3
-        bMZq11ljMaFRMYCjwIX9+ZBKqZYvG15x5RPgPBGEVwkjMkcc8SGRp0+ZAZVIuppTzExfaxQtbAfEM3qW
-        9MTNXGYeMBxM2FlTHMQz/3cWhB+PYm2UyA85PQAAAABJRU5ErkJggg==
-</value>
-  </data>
 </root>
