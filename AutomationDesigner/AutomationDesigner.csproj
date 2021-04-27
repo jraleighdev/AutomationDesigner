@@ -133,7 +133,7 @@
       <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
     </Reference>
     <Reference Include="InventorWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\InventorWrapper.1.0.1\lib\net472\InventorWrapper.dll</HintPath>
+      <HintPath>..\packages\InventorWrapper.1.0.2\lib\net472\InventorWrapper.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.2.4.5\lib\net47\MahApps.Metro.dll</HintPath>
@@ -388,7 +388,6 @@
     <Resource Include="Icons\solidworks-stop-32 %282%29.png" />
     <Resource Include="Icons\solidworks-template-32 %281%29.png" />
     <Resource Include="Icons\icons8-delete-16.png" />
-    <Content Include="References\Autodesk.Inventor.Interop.dll" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\AppSettings\Solidworks\SolidworksSettingsControl.xaml">
@@ -408,7 +407,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="References\Autodesk.Inventor.Interop.dll" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

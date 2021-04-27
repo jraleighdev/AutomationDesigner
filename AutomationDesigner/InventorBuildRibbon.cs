@@ -187,34 +187,34 @@ namespace AutomationDesigner
                     throw new Exception("Old path list and new path list do not match in qty");
                 }
 
-                var paths = new List<Tuple<string, string>>();
+                var paths = new List<ReferenceDto>();
 
                 for (var i = 0; i < oldPathList.Count; i++)
                 {
-                    paths.Add(new Tuple<string, string>(oldPathList[i], newPathList[i]));
+                    paths.Add(new ReferenceDto { OriginalReference = oldPathList[i], NewReference = newPathList[i] });
                 }
 
-                var mainDocPath = paths.FirstOrDefault(x => x.Item1.ToUpper() == adoc.FileName.ToUpper());
+                var mainDocPath = paths.FirstOrDefault(x => x.OriginalReference.ToUpper() == adoc.FileName.ToUpper());
 
-                if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(mainDocPath.Item2)))
+                if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(mainDocPath.NewReference)))
                 {
-                    System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(mainDocPath.Item2));
+                    System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(mainDocPath.NewReference));
                 }
 
-                adoc.SaveAs(mainDocPath.Item2);
+                adoc.SaveAs(mainDocPath.NewReference);
 
                 foreach (var doc in adoc.ReferencedDocuments)
                 {
-                    if (paths.Any(x => x.Item1.ToUpper() == doc.FileName.ToUpper()))
+                    if (paths.Any(x => x.OriginalReference.ToUpper() == doc.FileName.ToUpper()))
                     {
-                        var path = paths.First(x => x.Item1.ToUpper() == doc.FileName.ToUpper());
+                        var path = paths.First(x => x.OriginalReference.ToUpper() == doc.FileName.ToUpper());
 
-                        if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(path.Item2)))
+                        if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(path.NewReference)))
                         {
-                            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path.Item2));
+                            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path.NewReference));
                         }
 
-                        doc.SaveAs(path.Item2);
+                        doc.SaveAs(path.NewReference);
                     }
                 }
 
@@ -224,21 +224,15 @@ namespace AutomationDesigner
 
                 adoc.Dispose();
 
-                var newDoc = InventorApplication.Open(mainDocPath.Item2, "");
+                var newDoc = InventorApplication.Open(mainDocPath.NewReference, true);
 
                 CopyHelpers.ReplaceReferences(newDoc, paths);
-
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return;
             }
-
-
-
         }
 
         private void InventorGenTemplateButton_Click(object sender, RibbonControlEventArgs e)
@@ -409,6 +403,7 @@ namespace AutomationDesigner
                 }
 
                 var paths = new List<Tuple<string, string>>();
+
 
                 for (var i = 0; i < oldPathList.Count; i++)
                 {
@@ -592,7 +587,7 @@ namespace AutomationDesigner
             return new List<CommandItem>
             {
                 new CommandItem(Commands.Dimension, "Name of the dimension followed by the sketch or feature name example \"Dim1@Sketch1\"", ConstantStrings.ParentText, "Value to set the dimension", applicationType: ApplicationTypeEnum.Solidworks),
-                new CommandItem(Commands.Equation, "Name of the equation", ConstantStrings.ParentText, "Value to set the equation", notes: "Units Ul, In, MM, CM, M, or test", applicationType: ApplicationTypeEnum.Solidworks),
+                new CommandItem(Commands.Equation, "Name of the equation", ConstantStrings.ParentText, "Value to set the equation", notes: "Units UL, In, MM, CM, M, or test", applicationType: ApplicationTypeEnum.Solidworks),
                 new CommandItem(Commands.Parameter, "Name of Parameter", ConstantStrings.ParentText, "Value to set parameter", "Not Used", "Either UL(Unitless), In, MM, CM, M or text", "", ApplicationTypeEnum.Inventor),
                 new CommandItem(Commands.GetParameter, "Name of Parameter", ConstantStrings.ParentText, "Application will set the value of the parameter here", "Not Used", "Either UL(Unitless), In, MM, CM, M or text", "", ApplicationTypeEnum.Inventor),
                 new CommandItem(Commands.ComponentActivity, "Name of component in the tree followed by occurrence number", ConstantStrings.ParentText, ConstantStrings.SuppressionText),

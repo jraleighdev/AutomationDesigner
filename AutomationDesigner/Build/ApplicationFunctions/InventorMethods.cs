@@ -162,7 +162,7 @@ namespace AutomationDesigner.Build.ApplicationFunctions
         {
             var replaceList = new List<string>();
             var searchList = new List<string>();
-            var paths = new List<Tuple<string, string>>();
+            var paths = new List<ReferenceDto>();
 
             if (textToFind.Contains(","))
             {
@@ -189,13 +189,13 @@ namespace AutomationDesigner.Build.ApplicationFunctions
 
             if (System.IO.File.Exists(name))
             {
-                InventorApplication.Open(name, "", true);
+                InventorApplication.Open(name, true);
             }
             else
             {
                 if (System.IO.File.Exists(sourceLocation))
                 {
-                    var document = InventorApplication.Open(sourceLocation, "", true);
+                    var document = InventorApplication.Open(sourceLocation, true);
 
                     var newMainDocPath = document.FileName;
 
@@ -233,7 +233,7 @@ namespace AutomationDesigner.Build.ApplicationFunctions
 
                             doc.SaveAs(newPath);
 
-                            paths.Add(new Tuple<string, string>(oldPath, newPath));
+                            paths.Add(new ReferenceDto { OriginalReference = oldPath, NewReference = newPath });
                         }
                     }
 
@@ -243,7 +243,7 @@ namespace AutomationDesigner.Build.ApplicationFunctions
 
                     document.Dispose();
 
-                    var newDoc = InventorApplication.Open(newMainDocPath, "");
+                    var newDoc = InventorApplication.Open(newMainDocPath);
 
                     if (newDoc.IsAssemblyDoc)
                     {
