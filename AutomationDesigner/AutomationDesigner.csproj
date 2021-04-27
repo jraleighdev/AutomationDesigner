@@ -319,6 +319,7 @@
       <DependentUpon>InventorBuildRibbon.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="AutomationDesigner_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -416,7 +417,7 @@
     <ManifestKeyFile>AutomationDesigner_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>F919492D03525E0FFAC84D2F91C44393E6E1EF0F</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>EE45B05A7E61B29049A69A25E5A12411F72E6AB7</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
