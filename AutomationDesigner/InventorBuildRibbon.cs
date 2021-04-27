@@ -14,7 +14,6 @@ using AutomationDesigner.Forms;
 using AutomationDesigner.CopyTools;
 using InventorWrapper.CopyTools;
 using AutomationDesigner.Enums;
-using Syncfusion.Data.Extensions;
 using SolidworksWrapper;
 using SolidworksWrapper.Enums;
 using SolidworksWrapper.CopyTools;
