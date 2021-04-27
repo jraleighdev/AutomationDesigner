@@ -29,22 +29,39 @@ namespace AutomationDesigner.Forms.AppSettings
         /// </summary>
         private void InitializeComponent()
         {
+            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+            this.solidworksSettingsControl1 = new AutomationDesigner.Controls.AppSettings.Solidworks.SolidworksSettingsControl();
             this.SuspendLayout();
+            // 
+            // elementHost1
+            // 
+            this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.elementHost1.Location = new System.Drawing.Point(0, 0);
+            this.elementHost1.Name = "elementHost1";
+            this.elementHost1.Size = new System.Drawing.Size(800, 450);
+            this.elementHost1.TabIndex = 0;
+            this.elementHost1.Text = "elementHost1";
+            this.elementHost1.Child = this.solidworksSettingsControl1;
             // 
             // SolidworksSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.elementHost1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SolidworksSettingsForm";
             this.ShowIcon = false;
             this.Text = "Solidworks Settings";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SolidworksSettingsForm_FormClosing);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Integration.ElementHost elementHost1;
+        private Controls.AppSettings.Solidworks.SolidworksSettingsControl solidworksSettingsControl1;
     }
 }

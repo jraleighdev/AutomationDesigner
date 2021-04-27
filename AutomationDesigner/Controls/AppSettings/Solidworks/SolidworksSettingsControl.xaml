@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="AutomationDesigner.Controls.AppSettings.Solidworks.SolidworksSettingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AutomationDesigner.Controls.AppSettings.Solidworks"
+             Background="White"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <!-- Theme setting -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" MinWidth="150px"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Length Units"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding LengthUnits}" SelectedItem="{Binding SelectedUnitType}"/>
+
+        </Grid>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" Margin="5" Orientation="Horizontal" VerticalAlignment="Bottom" Height="30px">
+            <Button Content="OK" Command="{Binding SaveCommand}" Width="60px" Margin="0 0 5 0"/>
+            <Button Content="Cancel" Command="{Binding CancelCommand}" Width="60px"/>
+        </StackPanel>
+    </Grid>
+
+</UserControl>

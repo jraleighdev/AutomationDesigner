@@ -47,7 +47,7 @@ namespace AutomationDesigner.Controls.AppSettings.Inventor
             set
             {
                 _newPath = value;
-                OnPropertyChanged(nameof(_newPath));
+                OnPropertyChanged(nameof(NewPath));
             }
         }
 
@@ -125,6 +125,8 @@ namespace AutomationDesigner.Controls.AppSettings.Inventor
             // Add Data
             LengthUnits.AddRange(UnitManager.MeasurementUnits);
             AngularUnits.AddRange(UnitManager.AngularMeasurementUnits);
+            SelectedLengthUnit = (LengthUnits)Settings.Default.SelectedUnits;
+            SelectedAngularUnit = (AngularUnits)Settings.Default.AngularUnits;
 
             // Commands
             SaveCommand = new RelayCommand(Save);

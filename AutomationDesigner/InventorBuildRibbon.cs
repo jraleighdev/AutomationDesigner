@@ -469,9 +469,9 @@ namespace AutomationDesigner
 
         private void solidworksSettings_Click(object sender, RibbonControlEventArgs e)
         {
-            //var solidWorksSettingForm = new SolidworksSettingsForm();
+            var solidworksSettingsForm = new SolidworksSettingsForm();
 
-            //solidWorksSettingForm.Show();
+            solidworksSettingsForm.ShowDialog();
         }
 
         #endregion

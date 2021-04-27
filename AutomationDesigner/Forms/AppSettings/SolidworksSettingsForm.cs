@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutomationDesigner.Controls.AppSettings.Solidworks;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,18 @@ namespace AutomationDesigner.Forms.AppSettings
         public SolidworksSettingsForm()
         {
             InitializeComponent();
+
+            SolidworksSettingsControl.CloseForm += CloseForm;
+        }
+
+        private void CloseForm()
+        {
+            this.Close();
+        }
+
+        private void SolidworksSettingsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SolidworksSettingsControl.CloseForm -= CloseForm;
         }
     }
 }

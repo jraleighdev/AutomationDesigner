@@ -239,6 +239,10 @@
     <Compile Include="Constants\ConstantStrings.cs" />
     <Compile Include="Controls\AppSettings\Inventor\FilePathContainsViewModel.cs" />
     <Compile Include="Controls\AppSettings\Inventor\InventorSettingsViewModel.cs" />
+    <Compile Include="Controls\AppSettings\Solidworks\SolidworksSettingsControl.xaml.cs">
+      <DependentUpon>SolidworksSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AppSettings\Solidworks\SolidworksSettingsViewModel.cs" />
     <Compile Include="Controls\Capture\Inventor\InventorCaptureControl.xaml.cs">
       <DependentUpon>InventorCaptureControl.xaml</DependentUpon>
     </Compile>
@@ -289,12 +293,6 @@
     <Compile Include="Forms\InputForm.Designer.cs">
       <DependentUpon>InputForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SolidworksSettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SolidworksSettingsForm.Designer.cs">
-      <DependentUpon>SolidworksSettingsForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\CollectionHelpers.cs" />
     <Compile Include="Helpers\ConverterHelpers.cs" />
     <Compile Include="Helpers\ExcelHelpers.cs" />
@@ -320,9 +318,6 @@
       <DependentUpon>InventorSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AppSettings\SolidworksSettingsForm.resx">
-      <DependentUpon>SolidworksSettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SolidworksSettingsForm.resx">
       <DependentUpon>SolidworksSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -410,6 +405,10 @@
     <Content Include="References\Autodesk.Inventor.Interop.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\AppSettings\Solidworks\SolidworksSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Capture\Inventor\InventorCaptureControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -423,9 +422,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\AppSettings\Solidworks\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
