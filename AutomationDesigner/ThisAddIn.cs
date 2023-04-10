@@ -14,7 +14,6 @@ namespace AutomationDesigner
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             // get the intial units from the settings from 
-            SolidworksWrapper.General.UnitManager.UnitTypes = (SolidworksWrapper.General.UnitTypes)Settings.Default.SelectedUnits;
             InventorWrapper.General.UnitManager.LengthUnits = (InventorWrapper.General.LengthUnits)Settings.Default.SelectedUnits;
             InventorWrapper.General.UnitManager.AngularUnits = (InventorWrapper.General.AngularUnits)Settings.Default.AngularUnits;
         }

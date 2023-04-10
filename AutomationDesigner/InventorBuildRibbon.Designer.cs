@@ -48,18 +48,10 @@
             this.InventorCopyDocuments = this.Factory.CreateRibbonButton();
             this.settingsGroup = this.Factory.CreateRibbonGroup();
             this.InventorSettingsButton = this.Factory.CreateRibbonButton();
-            this.solidWorksBuildTab = this.Factory.CreateRibbonTab();
-            this.solidworksBuildGroup = this.Factory.CreateRibbonGroup();
-            this.solidWorksBuildButton = this.Factory.CreateRibbonButton();
-            this.solidWorksStopBuild = this.Factory.CreateRibbonButton();
-            this.group2 = this.Factory.CreateRibbonGroup();
             this.solidworksBuildTemplate = this.Factory.CreateRibbonButton();
-            this.solidworksCaptureGroup = this.Factory.CreateRibbonGroup();
             this.solidworksCaptureButton = this.Factory.CreateRibbonButton();
-            this.group3 = this.Factory.CreateRibbonGroup();
             this.solidworksLoadRefDocs = this.Factory.CreateRibbonButton();
             this.solidWorksCopyButton = this.Factory.CreateRibbonButton();
-            this.group4 = this.Factory.CreateRibbonGroup();
             this.solidworksSettings = this.Factory.CreateRibbonButton();
             this.buildTab.SuspendLayout();
             this.group1.SuspendLayout();
@@ -67,12 +59,6 @@
             this.inventorDataCapture.SuspendLayout();
             this.copyGroup.SuspendLayout();
             this.settingsGroup.SuspendLayout();
-            this.solidWorksBuildTab.SuspendLayout();
-            this.solidworksBuildGroup.SuspendLayout();
-            this.group2.SuspendLayout();
-            this.solidworksCaptureGroup.SuspendLayout();
-            this.group3.SuspendLayout();
-            this.group4.SuspendLayout();
             this.SuspendLayout();
             // 
             // buildTab
@@ -182,119 +168,36 @@
             this.InventorSettingsButton.ShowImage = true;
             this.InventorSettingsButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.InventorSettingsButton_Click);
             // 
-            // solidWorksBuildTab
-            // 
-            this.solidWorksBuildTab.Groups.Add(this.solidworksBuildGroup);
-            this.solidWorksBuildTab.Groups.Add(this.group2);
-            this.solidWorksBuildTab.Groups.Add(this.solidworksCaptureGroup);
-            this.solidWorksBuildTab.Groups.Add(this.group3);
-            this.solidWorksBuildTab.Groups.Add(this.group4);
-            this.solidWorksBuildTab.Label = "Solidworks Build";
-            this.solidWorksBuildTab.Name = "solidWorksBuildTab";
-            // 
-            // solidworksBuildGroup
-            // 
-            this.solidworksBuildGroup.Items.Add(this.solidWorksBuildButton);
-            this.solidworksBuildGroup.Items.Add(this.solidWorksStopBuild);
-            this.solidworksBuildGroup.Label = "Build";
-            this.solidworksBuildGroup.Name = "solidworksBuildGroup";
-            // 
-            // solidWorksBuildButton
-            // 
-            this.solidWorksBuildButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.solidWorksBuildButton.Image = ((System.Drawing.Image)(resources.GetObject("solidWorksBuildButton.Image")));
-            this.solidWorksBuildButton.Label = "Build";
-            this.solidWorksBuildButton.Name = "solidWorksBuildButton";
-            this.solidWorksBuildButton.ShowImage = true;
-            this.solidWorksBuildButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.solidWorksBuildButton_Click);
-            // 
-            // solidWorksStopBuild
-            // 
-            this.solidWorksStopBuild.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.solidWorksStopBuild.Image = ((System.Drawing.Image)(resources.GetObject("solidWorksStopBuild.Image")));
-            this.solidWorksStopBuild.Label = "Stop";
-            this.solidWorksStopBuild.Name = "solidWorksStopBuild";
-            this.solidWorksStopBuild.ShowImage = true;
-            this.solidWorksStopBuild.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.solidWorksStopBuild_Click);
-            // 
-            // group2
-            // 
-            this.group2.Items.Add(this.solidworksBuildTemplate);
-            this.group2.Label = "Generate";
-            this.group2.Name = "group2";
-            // 
             // solidworksBuildTemplate
             // 
-            this.solidworksBuildTemplate.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.solidworksBuildTemplate.Image = ((System.Drawing.Image)(resources.GetObject("solidworksBuildTemplate.Image")));
-            this.solidworksBuildTemplate.Label = "Build Template";
+            this.solidworksBuildTemplate.Label = "";
             this.solidworksBuildTemplate.Name = "solidworksBuildTemplate";
-            this.solidworksBuildTemplate.ShowImage = true;
-            this.solidworksBuildTemplate.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.solidworksBuildTemplate_Click);
-            // 
-            // solidworksCaptureGroup
-            // 
-            this.solidworksCaptureGroup.Items.Add(this.solidworksCaptureButton);
-            this.solidworksCaptureGroup.Label = "Capture";
-            this.solidworksCaptureGroup.Name = "solidworksCaptureGroup";
             // 
             // solidworksCaptureButton
             // 
-            this.solidworksCaptureButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.solidworksCaptureButton.Image = ((System.Drawing.Image)(resources.GetObject("solidworksCaptureButton.Image")));
-            this.solidworksCaptureButton.Label = "Capture Model Data";
+            this.solidworksCaptureButton.Label = "";
             this.solidworksCaptureButton.Name = "solidworksCaptureButton";
-            this.solidworksCaptureButton.ShowImage = true;
-            this.solidworksCaptureButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.solidworksCaptureButton_Click);
-            // 
-            // group3
-            // 
-            this.group3.Items.Add(this.solidworksLoadRefDocs);
-            this.group3.Items.Add(this.solidWorksCopyButton);
-            this.group3.Label = "Copy Tools";
-            this.group3.Name = "group3";
             // 
             // solidworksLoadRefDocs
             // 
-            this.solidworksLoadRefDocs.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.solidworksLoadRefDocs.Image = ((System.Drawing.Image)(resources.GetObject("solidworksLoadRefDocs.Image")));
-            this.solidworksLoadRefDocs.Label = "Load Ref Documents";
+            this.solidworksLoadRefDocs.Label = "";
             this.solidworksLoadRefDocs.Name = "solidworksLoadRefDocs";
-            this.solidworksLoadRefDocs.ShowImage = true;
-            this.solidworksLoadRefDocs.SuperTip = "Loads the referenced documents to a new sheet.";
-            this.solidworksLoadRefDocs.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.solidworksLoadRefDocs_Click);
             // 
             // solidWorksCopyButton
             // 
-            this.solidWorksCopyButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.solidWorksCopyButton.Image = ((System.Drawing.Image)(resources.GetObject("solidWorksCopyButton.Image")));
-            this.solidWorksCopyButton.Label = "Copy";
+            this.solidWorksCopyButton.Label = "";
             this.solidWorksCopyButton.Name = "solidWorksCopyButton";
-            this.solidWorksCopyButton.ShowImage = true;
-            this.solidWorksCopyButton.SuperTip = "Copies the list of documents";
-            this.solidWorksCopyButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.solidWorksCopyButton_Click);
-            // 
-            // group4
-            // 
-            this.group4.Items.Add(this.solidworksSettings);
-            this.group4.Label = "Settings";
-            this.group4.Name = "group4";
             // 
             // solidworksSettings
             // 
-            this.solidworksSettings.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.solidworksSettings.Image = ((System.Drawing.Image)(resources.GetObject("solidworksSettings.Image")));
-            this.solidworksSettings.Label = "Settings";
+            this.solidworksSettings.Label = "";
             this.solidworksSettings.Name = "solidworksSettings";
-            this.solidworksSettings.ShowImage = true;
-            this.solidworksSettings.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.solidworksSettings_Click);
             // 
             // InventorBuildRibbon
             // 
             this.Name = "InventorBuildRibbon";
             this.RibbonType = "Microsoft.Excel.Workbook";
             this.Tabs.Add(this.buildTab);
-            this.Tabs.Add(this.solidWorksBuildTab);
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.Ribbon1_Load);
             this.buildTab.ResumeLayout(false);
             this.buildTab.PerformLayout();
@@ -308,18 +211,6 @@
             this.copyGroup.PerformLayout();
             this.settingsGroup.ResumeLayout(false);
             this.settingsGroup.PerformLayout();
-            this.solidWorksBuildTab.ResumeLayout(false);
-            this.solidWorksBuildTab.PerformLayout();
-            this.solidworksBuildGroup.ResumeLayout(false);
-            this.solidworksBuildGroup.PerformLayout();
-            this.group2.ResumeLayout(false);
-            this.group2.PerformLayout();
-            this.solidworksCaptureGroup.ResumeLayout(false);
-            this.solidworksCaptureGroup.PerformLayout();
-            this.group3.ResumeLayout(false);
-            this.group3.PerformLayout();
-            this.group4.ResumeLayout(false);
-            this.group4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -337,18 +228,10 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton InventorCopyDocuments;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup settingsGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton InventorSettingsButton;
-        internal Microsoft.Office.Tools.Ribbon.RibbonTab solidWorksBuildTab;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup solidworksBuildGroup;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton solidWorksBuildButton;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton solidWorksStopBuild;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group2;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton solidworksBuildTemplate;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group3;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton solidworksLoadRefDocs;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton solidWorksCopyButton;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group4;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton solidworksSettings;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup solidworksCaptureGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton solidworksCaptureButton;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup inventorDataCapture;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton captureInventorModelData;

@@ -26,7 +26,7 @@
     <NoStandardLibraries>false</NoStandardLibraries>
     <RootNamespace>AutomationDesigner</RootNamespace>
     <AssemblyName>AutomationDesigner</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
     <IsWebBootstrapper>False</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -44,6 +44,7 @@
     <FriendlyName>AutomationDesigner</FriendlyName>
     <OfficeApplicationDescription />
     <LoadBehavior>3</LoadBehavior>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -132,6 +133,9 @@
     <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="InventorWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\InventorWrapper.1.0.13\lib\net48\InventorWrapper.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.2.4.5\lib\net47\MahApps.Metro.dll</HintPath>
     </Reference>
@@ -140,9 +144,6 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="SolidworksWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SolidworksWrapper.1.0.0\lib\net472\SolidworksWrapper.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -210,25 +211,15 @@
   -->
   <ItemGroup>
     <Compile Include="Build\ApplicationFunctions\InventorMethods.cs" />
-    <Compile Include="Build\ApplicationFunctions\SolidworksMethods.cs" />
     <Compile Include="Build\ExcelBaseParse.cs" />
     <Compile Include="Build\ProcessRunBlockInventor.cs" />
-    <Compile Include="Build\ProcessRunBlockSolidworks.cs" />
     <Compile Include="Constants\Commands.cs" />
     <Compile Include="Constants\ConstantStrings.cs" />
     <Compile Include="Controls\AppSettings\Inventor\FilePathContainsViewModel.cs" />
     <Compile Include="Controls\AppSettings\Inventor\InventorSettingsViewModel.cs" />
-    <Compile Include="Controls\AppSettings\Solidworks\SolidworksSettingsControl.xaml.cs">
-      <DependentUpon>SolidworksSettingsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\AppSettings\Solidworks\SolidworksSettingsViewModel.cs" />
     <Compile Include="Controls\Capture\Inventor\InventorCaptureControl.xaml.cs">
       <DependentUpon>InventorCaptureControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Capture\Solidworks\SolidworksCaptureControl.xaml.cs">
-      <DependentUpon>SolidworksCaptureControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Capture\Solidworks\SolidworksCaptureDesignViewModel.cs" />
     <Compile Include="Controls\AppSettings\Inventor\InventorSettingsControl.xaml.cs">
       <DependentUpon>InventorSettingsControl.xaml</DependentUpon>
     </Compile>
@@ -242,23 +233,11 @@
     <Compile Include="Forms\Capture\InventorCaptureForm.Designer.cs">
       <DependentUpon>InventorCaptureForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Capture\SolidworksCaptureForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Capture\SolidworksCaptureForm.Designer.cs">
-      <DependentUpon>SolidworksCaptureForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\AppSettings\InventorSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AppSettings\InventorSettingsForm.Designer.cs">
       <DependentUpon>InventorSettingsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\AppSettings\SolidworksSettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AppSettings\SolidworksSettingsForm.Designer.cs">
-      <DependentUpon>SolidworksSettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ExpressionHelpers.cs" />
     <Compile Include="Helpers\Mapping.cs" />
@@ -291,17 +270,11 @@
     <EmbeddedResource Include="Forms\Capture\InventorCaptureForm.resx">
       <DependentUpon>InventorCaptureForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Capture\SolidworksCaptureForm.resx">
-      <DependentUpon>SolidworksCaptureForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\InputForm.resx">
       <DependentUpon>InputForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AppSettings\InventorSettingsForm.resx">
       <DependentUpon>InventorSettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AppSettings\SolidworksSettingsForm.resx">
-      <DependentUpon>SolidworksSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -311,6 +284,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -328,6 +302,7 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -387,15 +362,7 @@
     <Resource Include="Icons\icons8-delete-16.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\AppSettings\Solidworks\SolidworksSettingsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\Capture\Inventor\InventorCaptureControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\Capture\Solidworks\SolidworksCaptureControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -403,6 +370,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\Autodesk.Inventor.Interop.dll" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

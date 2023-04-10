@@ -14,9 +14,6 @@ using AutomationDesigner.Forms;
 using AutomationDesigner.CopyTools;
 using InventorWrapper.CopyTools;
 using AutomationDesigner.Enums;
-using SolidworksWrapper;
-using SolidworksWrapper.Enums;
-using SolidworksWrapper.CopyTools;
 using AutomationDesigner.Forms.Capture;
 using AutomationDesigner.Forms.AppSettings;
 using AutomationDesigner.Logs;
@@ -27,14 +24,11 @@ namespace AutomationDesigner
     {
         private ProcessRunBlockInventor _processInventor;
 
-        private ProcessRunBlockSolidworks _processSolidworks;
-
         private ApplicationTypeEnum ApplicationType;
 
         private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
         {
             InventorStopButton.Enabled = false;
-            solidWorksStopBuild.Enabled = false;
         }
 
         #region Inventor Methods
@@ -244,235 +238,6 @@ namespace AutomationDesigner
 
         #endregion
 
-        #region Solidworks Methods
-
-        private void solidWorksBuildButton_Click(object sender, RibbonControlEventArgs e)
-        {
-            _processSolidworks = new ProcessRunBlockSolidworks(Globals.ThisAddIn.Application.ActiveSheet);
-
-            try
-            {
-                _processSolidworks.Run(true);
-
-                if (LogManager.HasData)
-                {
-                    LogManager.WriteLogs(Globals.ThisAddIn.Application.ActiveWorkbook);
-
-                    MessageBox.Show("Done", "Application Complete - Please Review Logs", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else
-                {
-                    MessageBox.Show("Done", "Application Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ran into an error while running", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                LogManager.Clear();
-                solidWorksStopBuild.Enabled = false;
-            }
-        }
-
-        private void solidWorksStopBuild_Click(object sender, RibbonControlEventArgs e)
-        {
-
-        }
-
-        private void solidworksBuildTemplate_Click(object sender, RibbonControlEventArgs e)
-        {
-            ApplicationType = ApplicationTypeEnum.Solidworks;
-
-            AddTemplate();
-        }
-
-        private void solidworksLoadRefDocs_Click(object sender, RibbonControlEventArgs e)
-        {
-            if (!SolidworksApplication.Attached)
-            {
-                SolidworksApplication.Attach();
-            }
-
-            var activeDocument = SolidworksApplication.ActiveDocument;
-
-            if (activeDocument == null || !activeDocument.IsAssemblyDoc)
-            {
-                MessageBox.Show("Please open an assembly document");
-            }
-
-            var docs = new List<CopyDocumentItem>();
-
-            docs.Add(new CopyDocumentItem(activeDocument.FullFileName));
-
-            var filesPathsToAvoid = Settings.Default.PathsToAvoid.SettingsToList();
-
-            foreach (var doc in activeDocument.Children(false).GetReferencedDocumentsNames())
-            {
-                if (filesPathsToAvoid.Any(x => doc.ToUpper().Contains(x.ToUpper()))) continue;
-
-                docs.Add(new CopyDocumentItem(doc));
-            }
-
-            if (Globals.ThisAddIn.Application.ActiveWorkbook.WorkSheetExists("Copy Tool"))
-            {
-                Globals.ThisAddIn.Application.ActiveWorkbook.ActivateSheet("Copy Tool");
-            }
-            else
-            {
-                Globals.ThisAddIn.Application.ActiveWorkbook.Sheets.Add();
-
-                Globals.ThisAddIn.Application.ActiveSheet.Name = "Copy Tool";
-            }
-
-            Excel.Worksheet workSheet = Globals.ThisAddIn.Application.ActiveSheet;
-
-            workSheet.Cells.Clear();
-
-            workSheet.Name = "Copy Tool";
-
-            workSheet.Range["A1"].Value = "Old Path";
-            workSheet.Range["B1"].Value = "New Path";
-
-            var i = 2;
-
-            foreach (var d in docs)
-            {
-                workSheet.Range[$"A{i}"].Value = d.OldPath;
-                workSheet.Range[$"B{i}"].Value = d.NewPath;
-
-                i++;
-            }
-
-            var copyTable = workSheet.Range[$"A1:B{i}"];
-
-            workSheet.ListObjects.AddEx(XlListObjectSourceType.xlSrcRange, copyTable, null, XlYesNoGuess.xlYes).Name = "Copy Table";
-
-            var outTable = workSheet.GetListObjects().FirstOrDefault(x => x.Name == "Copy Table");
-
-            var old = outTable.GetListColumns().FirstOrDefault(x => x.Name == "Old Path");
-        }
-
-        private void solidWorksCopyButton_Click(object sender, RibbonControlEventArgs e)
-        {
-            if (!SolidworksApplication.Attached)
-            {
-                SolidworksApplication.Attach();
-            }
-
-            var activeDocument = SolidworksApplication.ActiveDocument;
-
-            var valid = activeDocument != null && activeDocument.IsAssemblyDoc;
-
-            if (!valid)
-            {
-                MessageBox.Show("Please open an assembly document");
-            }
-
-            var adoc = activeDocument;
-
-            if (Globals.ThisAddIn.Application.ActiveWorkbook.WorkSheetExists("Copy Tool"))
-            {
-                Globals.ThisAddIn.Application.ActiveWorkbook.ActivateSheet("Copy Tool");
-            }
-            else
-            {
-                return;
-            }
-
-            Excel.Worksheet workSheet = Globals.ThisAddIn.Application.ActiveSheet;
-
-            try
-            {
-                var outTable = workSheet.GetListObjects().FirstOrDefault(x => x.Name == "Copy Table");
-
-                if (outTable == null) throw new Exception("Could not find table Copy Table");
-
-                var oldPath = outTable.GetListColumns().FirstOrDefault(x => x.Name == "Old Path");
-
-                var newPath = outTable.GetListColumns().FirstOrDefault(x => x.Name == "New Path");
-
-                var oldPathList = oldPath.Range.GetFilePaths();
-
-                var newPathList = newPath.Range.GetFilePaths();
-
-                if (oldPathList.Count != newPathList.Count)
-                {
-                    throw new Exception("Old path list and new path list do not match in qty");
-                }
-
-                var paths = new List<Tuple<string, string>>();
-
-
-                for (var i = 0; i < oldPathList.Count; i++)
-                {
-                    paths.Add(new Tuple<string, string>(oldPathList[i], newPathList[i]));
-                }
-
-                var mainDocPath = paths.FirstOrDefault(x => x.Item1.ToUpper() == adoc.FullFileName.ToUpper());
-
-                if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(mainDocPath.Item2)))
-                {
-                    System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(mainDocPath.Item2));
-                }
-
-                adoc.SaveAs(mainDocPath.Item2);
-
-                adoc.Save();
-
-                adoc.Close();
-
-                adoc.Dispose();
-
-                var newDoc = SolidworksApplication.Open(mainDocPath.Item2, DocumentTypes.ASSEMBLY);
-
-                var children = newDoc.Children();
-
-                // capture the current state of suppression
-                children.CaptureSuppressionState();
-
-                children.UnsuppressAll();
-
-                foreach (var doc in children.GetReferencedDocuments())
-                {
-                    if (paths.Any(x => x.Item1.ToUpper() == doc.FullFileName.ToUpper()))
-                    {
-                        var path = paths.First(x => x.Item1.ToUpper() == doc.FullFileName.ToUpper());
-
-                        if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(path.Item2)))
-                        {
-                            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path.Item2));
-                        }
-
-                        doc.SaveAs(path.Item2);
-                    }
-                }
-
-                SolidworksCopyHelpers solidworksCopy = new SolidworksCopyHelpers();
-
-                solidworksCopy.References(newDoc, paths);
-
-                children.RestoreSuppressionState();
-
-                //CopyHelpers.ReplaceReferences(newDoc, paths);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
-            }
-        }
-
-        private void solidworksSettings_Click(object sender, RibbonControlEventArgs e)
-        {
-            var solidworksSettingsForm = new SolidworksSettingsForm();
-
-            solidworksSettingsForm.ShowDialog();
-        }
-
-        #endregion
-
         #region General Methods
 
         private void AddTemplate()
@@ -621,16 +386,6 @@ namespace AutomationDesigner
         }
 
         #endregion
-
-        private void solidworksCaptureButton_Click(object sender, RibbonControlEventArgs e)
-        {
-            var captureForm = new SolidworksCaptureForm
-            {
-                TopMost = true
-            };
-
-            captureForm.Show();
-        }
 
         private void captureInventorModelData_Click(object sender, RibbonControlEventArgs e)
         {
