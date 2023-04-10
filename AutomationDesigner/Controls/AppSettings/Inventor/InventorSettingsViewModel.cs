@@ -1,6 +1,5 @@
 ﻿using AutomationDesigner.Helpers;
 using AutomationDesigner.ViewModels.Base;
-using InventorWrapper.General;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 

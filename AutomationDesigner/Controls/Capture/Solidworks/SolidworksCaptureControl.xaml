@@ -25,7 +25,7 @@
         <Grid DockPanel.Dock="Top">
             <!-- Grid Layout -->
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>c
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
